@@ -400,7 +400,7 @@ namespace getNumbers
                 db.Agencias.InsertOnSubmit(a);
                 db.SubmitChanges();
 
-                MessageBox.Show("Adicionado!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Adicionado!!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
