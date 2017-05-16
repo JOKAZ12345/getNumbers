@@ -54,9 +54,6 @@ namespace getNumbers
     partial void InsertPermuta(Permuta instance);
     partial void UpdatePermuta(Permuta instance);
     partial void DeletePermuta(Permuta instance);
-    partial void InsertPessoa(Pessoa instance);
-    partial void UpdatePessoa(Pessoa instance);
-    partial void DeletePessoa(Pessoa instance);
     partial void InsertPreco(Preco instance);
     partial void UpdatePreco(Preco instance);
     partial void DeletePreco(Preco instance);
@@ -75,6 +72,9 @@ namespace getNumbers
     partial void InsertPotencial(Potencial instance);
     partial void UpdatePotencial(Potencial instance);
     partial void DeletePotencial(Potencial instance);
+    partial void InsertPessoa(Pessoa instance);
+    partial void UpdatePessoa(Pessoa instance);
+    partial void DeletePessoa(Pessoa instance);
     #endregion
 		
 		public prabitarDataContext() : 
@@ -171,14 +171,6 @@ namespace getNumbers
 			}
 		}
 		
-		public System.Data.Linq.Table<Pessoa> Pessoas
-		{
-			get
-			{
-				return this.GetTable<Pessoa>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Preco> Precos
 		{
 			get
@@ -224,6 +216,14 @@ namespace getNumbers
 			get
 			{
 				return this.GetTable<Potencial>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Pessoa> Pessoas
+		{
+			get
+			{
+				return this.GetTable<Pessoa>();
 			}
 		}
 	}
@@ -854,9 +854,9 @@ namespace getNumbers
 		
 		private EntityRef<Imovel> _Imovel;
 		
-		private EntityRef<Pessoa> _Pessoa;
-		
 		private EntityRef<Venda> _Venda;
+		
+		private EntityRef<Pessoa> _Pessoa;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -880,8 +880,8 @@ namespace getNumbers
 			this._Imovels = new EntitySet<Imovel>(new Action<Imovel>(this.attach_Imovels), new Action<Imovel>(this.detach_Imovels));
 			this._Arrendamento = default(EntityRef<Arrendamento>);
 			this._Imovel = default(EntityRef<Imovel>);
-			this._Pessoa = default(EntityRef<Pessoa>);
 			this._Venda = default(EntityRef<Venda>);
+			this._Pessoa = default(EntityRef<Pessoa>);
 			OnCreated();
 		}
 		
@@ -1095,40 +1095,6 @@ namespace getNumbers
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Comprador", Storage="_Pessoa", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID", IsForeignKey=true)]
-		public Pessoa Pessoa
-		{
-			get
-			{
-				return this._Pessoa.Entity;
-			}
-			set
-			{
-				Pessoa previousValue = this._Pessoa.Entity;
-				if (((previousValue != value) 
-							|| (this._Pessoa.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Pessoa.Entity = null;
-						previousValue.Compradors.Remove(this);
-					}
-					this._Pessoa.Entity = value;
-					if ((value != null))
-					{
-						value.Compradors.Add(this);
-						this._Pessoa_ID = value.Pessoa_ID;
-					}
-					else
-					{
-						this._Pessoa_ID = default(int);
-					}
-					this.SendPropertyChanged("Pessoa");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Venda_Comprador", Storage="_Venda", ThisKey="Venda_ID", OtherKey="Venda_ID", IsForeignKey=true)]
 		public Venda Venda
 		{
@@ -1159,6 +1125,40 @@ namespace getNumbers
 						this._Venda_ID = default(int);
 					}
 					this.SendPropertyChanged("Venda");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Comprador", Storage="_Pessoa", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID", IsForeignKey=true)]
+		public Pessoa Pessoa
+		{
+			get
+			{
+				return this._Pessoa.Entity;
+			}
+			set
+			{
+				Pessoa previousValue = this._Pessoa.Entity;
+				if (((previousValue != value) 
+							|| (this._Pessoa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Pessoa.Entity = null;
+						previousValue.Compradors.Remove(this);
+					}
+					this._Pessoa.Entity = value;
+					if ((value != null))
+					{
+						value.Compradors.Add(this);
+						this._Pessoa_ID = value.Pessoa_ID;
+					}
+					else
+					{
+						this._Pessoa_ID = default(int);
+					}
+					this.SendPropertyChanged("Pessoa");
 				}
 			}
 		}
@@ -2399,296 +2399,6 @@ namespace getNumbers
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pessoa")]
-	public partial class Pessoa : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Nome;
-		
-		private System.Nullable<int> _BI;
-		
-		private int _Pessoa_ID;
-		
-		private System.Nullable<int> _Telefone;
-		
-		private string _Email;
-		
-		private string _Profissao;
-		
-		private System.Nullable<System.DateTime> _DataNascimento;
-		
-		private EntitySet<Arrendatario> _Arrendatarios;
-		
-		private EntitySet<Comprador> _Compradors;
-		
-		private EntitySet<Vendedor> _Vendedors;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnNomeChanging(string value);
-    partial void OnNomeChanged();
-    partial void OnBIChanging(System.Nullable<int> value);
-    partial void OnBIChanged();
-    partial void OnPessoa_IDChanging(int value);
-    partial void OnPessoa_IDChanged();
-    partial void OnTelefoneChanging(System.Nullable<int> value);
-    partial void OnTelefoneChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnProfissaoChanging(string value);
-    partial void OnProfissaoChanged();
-    partial void OnDataNascimentoChanging(System.Nullable<System.DateTime> value);
-    partial void OnDataNascimentoChanged();
-    #endregion
-		
-		public Pessoa()
-		{
-			this._Arrendatarios = new EntitySet<Arrendatario>(new Action<Arrendatario>(this.attach_Arrendatarios), new Action<Arrendatario>(this.detach_Arrendatarios));
-			this._Compradors = new EntitySet<Comprador>(new Action<Comprador>(this.attach_Compradors), new Action<Comprador>(this.detach_Compradors));
-			this._Vendedors = new EntitySet<Vendedor>(new Action<Vendedor>(this.attach_Vendedors), new Action<Vendedor>(this.detach_Vendedors));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Nome
-		{
-			get
-			{
-				return this._Nome;
-			}
-			set
-			{
-				if ((this._Nome != value))
-				{
-					this.OnNomeChanging(value);
-					this.SendPropertyChanging();
-					this._Nome = value;
-					this.SendPropertyChanged("Nome");
-					this.OnNomeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BI", DbType="Int")]
-		public System.Nullable<int> BI
-		{
-			get
-			{
-				return this._BI;
-			}
-			set
-			{
-				if ((this._BI != value))
-				{
-					this.OnBIChanging(value);
-					this.SendPropertyChanging();
-					this._BI = value;
-					this.SendPropertyChanged("BI");
-					this.OnBIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pessoa_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Pessoa_ID
-		{
-			get
-			{
-				return this._Pessoa_ID;
-			}
-			set
-			{
-				if ((this._Pessoa_ID != value))
-				{
-					this.OnPessoa_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Pessoa_ID = value;
-					this.SendPropertyChanged("Pessoa_ID");
-					this.OnPessoa_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefone", DbType="Int")]
-		public System.Nullable<int> Telefone
-		{
-			get
-			{
-				return this._Telefone;
-			}
-			set
-			{
-				if ((this._Telefone != value))
-				{
-					this.OnTelefoneChanging(value);
-					this.SendPropertyChanging();
-					this._Telefone = value;
-					this.SendPropertyChanged("Telefone");
-					this.OnTelefoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Profissao", DbType="VarChar(250)")]
-		public string Profissao
-		{
-			get
-			{
-				return this._Profissao;
-			}
-			set
-			{
-				if ((this._Profissao != value))
-				{
-					this.OnProfissaoChanging(value);
-					this.SendPropertyChanging();
-					this._Profissao = value;
-					this.SendPropertyChanged("Profissao");
-					this.OnProfissaoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataNascimento", DbType="Date")]
-		public System.Nullable<System.DateTime> DataNascimento
-		{
-			get
-			{
-				return this._DataNascimento;
-			}
-			set
-			{
-				if ((this._DataNascimento != value))
-				{
-					this.OnDataNascimentoChanging(value);
-					this.SendPropertyChanging();
-					this._DataNascimento = value;
-					this.SendPropertyChanged("DataNascimento");
-					this.OnDataNascimentoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Arrendatario", Storage="_Arrendatarios", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID")]
-		public EntitySet<Arrendatario> Arrendatarios
-		{
-			get
-			{
-				return this._Arrendatarios;
-			}
-			set
-			{
-				this._Arrendatarios.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Comprador", Storage="_Compradors", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID")]
-		public EntitySet<Comprador> Compradors
-		{
-			get
-			{
-				return this._Compradors;
-			}
-			set
-			{
-				this._Compradors.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Vendedor", Storage="_Vendedors", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID")]
-		public EntitySet<Vendedor> Vendedors
-		{
-			get
-			{
-				return this._Vendedors;
-			}
-			set
-			{
-				this._Vendedors.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Arrendatarios(Arrendatario entity)
-		{
-			this.SendPropertyChanging();
-			entity.Pessoa = this;
-		}
-		
-		private void detach_Arrendatarios(Arrendatario entity)
-		{
-			this.SendPropertyChanging();
-			entity.Pessoa = null;
-		}
-		
-		private void attach_Compradors(Comprador entity)
-		{
-			this.SendPropertyChanging();
-			entity.Pessoa = this;
-		}
-		
-		private void detach_Compradors(Comprador entity)
-		{
-			this.SendPropertyChanging();
-			entity.Pessoa = null;
-		}
-		
-		private void attach_Vendedors(Vendedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.Pessoa = this;
-		}
-		
-		private void detach_Vendedors(Vendedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.Pessoa = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Preco")]
 	public partial class Preco : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3100,9 +2810,9 @@ namespace getNumbers
 		
 		private EntityRef<Imovel> _Imovel;
 		
-		private EntityRef<Pessoa> _Pessoa;
-		
 		private EntityRef<Venda> _Venda;
+		
+		private EntityRef<Pessoa> _Pessoa;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3122,8 +2832,8 @@ namespace getNumbers
 		{
 			this._Imovels = new EntitySet<Imovel>(new Action<Imovel>(this.attach_Imovels), new Action<Imovel>(this.detach_Imovels));
 			this._Imovel = default(EntityRef<Imovel>);
-			this._Pessoa = default(EntityRef<Pessoa>);
 			this._Venda = default(EntityRef<Venda>);
+			this._Pessoa = default(EntityRef<Pessoa>);
 			OnCreated();
 		}
 		
@@ -3266,40 +2976,6 @@ namespace getNumbers
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Vendedor", Storage="_Pessoa", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID", IsForeignKey=true)]
-		public Pessoa Pessoa
-		{
-			get
-			{
-				return this._Pessoa.Entity;
-			}
-			set
-			{
-				Pessoa previousValue = this._Pessoa.Entity;
-				if (((previousValue != value) 
-							|| (this._Pessoa.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Pessoa.Entity = null;
-						previousValue.Vendedors.Remove(this);
-					}
-					this._Pessoa.Entity = value;
-					if ((value != null))
-					{
-						value.Vendedors.Add(this);
-						this._Pessoa_ID = value.Pessoa_ID;
-					}
-					else
-					{
-						this._Pessoa_ID = default(int);
-					}
-					this.SendPropertyChanged("Pessoa");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Venda_Vendedor", Storage="_Venda", ThisKey="Venda_ID", OtherKey="Venda_ID", IsForeignKey=true)]
 		public Venda Venda
 		{
@@ -3330,6 +3006,40 @@ namespace getNumbers
 						this._Venda_ID = default(int);
 					}
 					this.SendPropertyChanged("Venda");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Vendedor", Storage="_Pessoa", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID", IsForeignKey=true)]
+		public Pessoa Pessoa
+		{
+			get
+			{
+				return this._Pessoa.Entity;
+			}
+			set
+			{
+				Pessoa previousValue = this._Pessoa.Entity;
+				if (((previousValue != value) 
+							|| (this._Pessoa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Pessoa.Entity = null;
+						previousValue.Vendedors.Remove(this);
+					}
+					this._Pessoa.Entity = value;
+					if ((value != null))
+					{
+						value.Vendedors.Add(this);
+						this._Pessoa_ID = value.Pessoa_ID;
+					}
+					else
+					{
+						this._Pessoa_ID = default(int);
+					}
+					this.SendPropertyChanged("Pessoa");
 				}
 			}
 		}
@@ -3831,6 +3541,320 @@ namespace getNumbers
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pessoa")]
+	public partial class Pessoa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Nome;
+		
+		private System.Nullable<int> _BI;
+		
+		private int _Pessoa_ID;
+		
+		private System.Nullable<int> _Telefone;
+		
+		private string _Email;
+		
+		private string _Profissao;
+		
+		private System.Nullable<System.DateTime> _DataNascimento;
+		
+		private string _Morada;
+		
+		private EntitySet<Arrendatario> _Arrendatarios;
+		
+		private EntitySet<Comprador> _Compradors;
+		
+		private EntitySet<Vendedor> _Vendedors;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    partial void OnBIChanging(System.Nullable<int> value);
+    partial void OnBIChanged();
+    partial void OnPessoa_IDChanging(int value);
+    partial void OnPessoa_IDChanged();
+    partial void OnTelefoneChanging(System.Nullable<int> value);
+    partial void OnTelefoneChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnProfissaoChanging(string value);
+    partial void OnProfissaoChanged();
+    partial void OnDataNascimentoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataNascimentoChanged();
+    partial void OnMoradaChanging(string value);
+    partial void OnMoradaChanged();
+    #endregion
+		
+		public Pessoa()
+		{
+			this._Arrendatarios = new EntitySet<Arrendatario>(new Action<Arrendatario>(this.attach_Arrendatarios), new Action<Arrendatario>(this.detach_Arrendatarios));
+			this._Compradors = new EntitySet<Comprador>(new Action<Comprador>(this.attach_Compradors), new Action<Comprador>(this.detach_Compradors));
+			this._Vendedors = new EntitySet<Vendedor>(new Action<Vendedor>(this.attach_Vendedors), new Action<Vendedor>(this.detach_Vendedors));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BI", DbType="Int")]
+		public System.Nullable<int> BI
+		{
+			get
+			{
+				return this._BI;
+			}
+			set
+			{
+				if ((this._BI != value))
+				{
+					this.OnBIChanging(value);
+					this.SendPropertyChanging();
+					this._BI = value;
+					this.SendPropertyChanged("BI");
+					this.OnBIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pessoa_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Pessoa_ID
+		{
+			get
+			{
+				return this._Pessoa_ID;
+			}
+			set
+			{
+				if ((this._Pessoa_ID != value))
+				{
+					this.OnPessoa_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Pessoa_ID = value;
+					this.SendPropertyChanged("Pessoa_ID");
+					this.OnPessoa_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefone", DbType="Int")]
+		public System.Nullable<int> Telefone
+		{
+			get
+			{
+				return this._Telefone;
+			}
+			set
+			{
+				if ((this._Telefone != value))
+				{
+					this.OnTelefoneChanging(value);
+					this.SendPropertyChanging();
+					this._Telefone = value;
+					this.SendPropertyChanged("Telefone");
+					this.OnTelefoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Profissao", DbType="VarChar(250)")]
+		public string Profissao
+		{
+			get
+			{
+				return this._Profissao;
+			}
+			set
+			{
+				if ((this._Profissao != value))
+				{
+					this.OnProfissaoChanging(value);
+					this.SendPropertyChanging();
+					this._Profissao = value;
+					this.SendPropertyChanged("Profissao");
+					this.OnProfissaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataNascimento", DbType="Date")]
+		public System.Nullable<System.DateTime> DataNascimento
+		{
+			get
+			{
+				return this._DataNascimento;
+			}
+			set
+			{
+				if ((this._DataNascimento != value))
+				{
+					this.OnDataNascimentoChanging(value);
+					this.SendPropertyChanging();
+					this._DataNascimento = value;
+					this.SendPropertyChanged("DataNascimento");
+					this.OnDataNascimentoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Morada", DbType="VarChar(250)")]
+		public string Morada
+		{
+			get
+			{
+				return this._Morada;
+			}
+			set
+			{
+				if ((this._Morada != value))
+				{
+					this.OnMoradaChanging(value);
+					this.SendPropertyChanging();
+					this._Morada = value;
+					this.SendPropertyChanged("Morada");
+					this.OnMoradaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Arrendatario", Storage="_Arrendatarios", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID")]
+		public EntitySet<Arrendatario> Arrendatarios
+		{
+			get
+			{
+				return this._Arrendatarios;
+			}
+			set
+			{
+				this._Arrendatarios.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Comprador", Storage="_Compradors", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID")]
+		public EntitySet<Comprador> Compradors
+		{
+			get
+			{
+				return this._Compradors;
+			}
+			set
+			{
+				this._Compradors.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pessoa_Vendedor", Storage="_Vendedors", ThisKey="Pessoa_ID", OtherKey="Pessoa_ID")]
+		public EntitySet<Vendedor> Vendedors
+		{
+			get
+			{
+				return this._Vendedors;
+			}
+			set
+			{
+				this._Vendedors.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Arrendatarios(Arrendatario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pessoa = this;
+		}
+		
+		private void detach_Arrendatarios(Arrendatario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pessoa = null;
+		}
+		
+		private void attach_Compradors(Comprador entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pessoa = this;
+		}
+		
+		private void detach_Compradors(Comprador entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pessoa = null;
+		}
+		
+		private void attach_Vendedors(Vendedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pessoa = this;
+		}
+		
+		private void detach_Vendedors(Vendedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pessoa = null;
 		}
 	}
 }

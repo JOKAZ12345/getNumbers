@@ -427,5 +427,87 @@ namespace getNumbers
 
             MessageBox.Show("Limpeza Feita!");
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            // 
+
+            var Webget = new HtmlWeb();
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
+            var db = new prabitarDataContext();
+            var potenciais = db.Potencials;
+
+            foreach (var potencial in potenciais)
+            {
+                var doc = Webget.Load(potencial.URL);
+
+                if (doc != null)
+                {
+                    var nodes = doc.DocumentNode.SelectNodes("//*[@id=\"side-content\"]/section/div[3]"); // Vai buscar os districtos disponíveis no site
+
+                    foreach (var node in nodes)
+                    {
+                        //if(node)
+                    }  
+                }
+                
+            }
+            
+
+            
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var db = new prabitarDataContext();
+
+            var pessoas = db.Pessoas;
+
+            var nome = "";
+            if (!string.IsNullOrEmpty(textBox5.Text))
+                nome = textBox5.Text.ToLower();
+
+            var BI=0;
+            if (!string.IsNullOrEmpty(textBox6.Text))
+                BI = Convert.ToInt32(textBox6.Text);
+
+            var telefone=0;
+            if (!string.IsNullOrEmpty(textBox7.Text))
+                telefone = Convert.ToInt32(textBox7.Text);
+
+            var email = "";
+            if (!string.IsNullOrEmpty(textBox8.Text))
+                email = textBox8.Text.ToLower();
+
+            var morada = "";
+            if (!string.IsNullOrEmpty(textBox9.Text))
+                morada = textBox9.Text.ToLower();
+
+            var pessoa = pessoas.FirstOrDefault(x => x.Nome.ToLower().Equals(nome) ||
+                                                           x.BI == BI || x.Telefone == telefone ||
+                                                           x.Email.ToLower().Equals(email) ||
+                                                           x.Morada.ToLower().Equals(morada));
+
+            if (pessoa != null)
+            {
+                textBox5.Text = pessoa.Nome;
+                textBox6.Text = pessoa.BI.ToString();
+                textBox7.Text = pessoa.Telefone.ToString();
+                textBox8.Text = pessoa.Email;
+                textBox9.Text = pessoa.Morada;
+                textBox10.Text = pessoa.DataNascimento.ToString(); // TODO: Atenção não tou a pesquisar pela data nascimento
+            }
+
+            else
+                MessageBox.Show("Não existe!");
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
