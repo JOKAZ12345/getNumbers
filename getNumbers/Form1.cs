@@ -328,7 +328,7 @@ namespace getNumbers
                         res = doc.DocumentNode.SelectSingleNode("//*[@id=\"online\"]/a");
 
                         if (res != null)
-                            link = res.Attributes["href"].Value; // TODO: URL está a ficar mal guardado
+                            link = res.Attributes["href"].Value;
 
                         var a = new Agencia{ Nome = imobiliaria, Telefone = telefone, URL = link, url_idealista = url };
 
@@ -420,29 +420,6 @@ namespace getNumbers
                 {
                     if (t.Telefone == tt.Telefone)
                         db.Potencials.DeleteOnSubmit(t);
-                }
-            }
-
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-
-            foreach (var potencial in contactosPotenciais)
-            {
-                if (potencial.URL.Contains("idealista")) // TODO: Só funciona para o idealista
-                {
-                    var Webget = new HtmlWeb();
-
-                    var doc = Webget.Load(potencial.URL.Replace("http:w", "http://w"));
-
-                    var res = doc.DocumentNode.SelectSingleNode("//*[@id=\"side-content\"]/section");
-
-                    foreach (var child in res.ChildNodes)
-                    {
-                        if (child.Name == "div")
-                        {
-                            if (child.InnerText.Contains("Profissional"))
-                                db.Potencials.DeleteOnSubmit(potencial);
-                        }
-                    }
                 }
             }
 
