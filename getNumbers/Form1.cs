@@ -499,6 +499,7 @@ namespace getNumbers
                 textBox8.Text = pessoa.Email;
                 textBox9.Text = pessoa.Morada;
                 textBox10.Text = pessoa.DataNascimento.ToString(); // TODO: Atenção não tou a pesquisar pela data nascimento
+                textBox11.Text = pessoa.NIF.ToString(); // TODO: Atenção não tou a pesquisar pelo NIFg
             }
 
             else

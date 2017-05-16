@@ -3566,6 +3566,8 @@ namespace getNumbers
 		
 		private string _Morada;
 		
+		private System.Nullable<int> _NIF;
+		
 		private EntitySet<Arrendatario> _Arrendatarios;
 		
 		private EntitySet<Comprador> _Compradors;
@@ -3592,6 +3594,8 @@ namespace getNumbers
     partial void OnDataNascimentoChanged();
     partial void OnMoradaChanging(string value);
     partial void OnMoradaChanged();
+    partial void OnNIFChanging(System.Nullable<int> value);
+    partial void OnNIFChanged();
     #endregion
 		
 		public Pessoa()
@@ -3758,6 +3762,26 @@ namespace getNumbers
 					this._Morada = value;
 					this.SendPropertyChanged("Morada");
 					this.OnMoradaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NIF", DbType="Int")]
+		public System.Nullable<int> NIF
+		{
+			get
+			{
+				return this._NIF;
+			}
+			set
+			{
+				if ((this._NIF != value))
+				{
+					this.OnNIFChanging(value);
+					this.SendPropertyChanging();
+					this._NIF = value;
+					this.SendPropertyChanged("NIF");
+					this.OnNIFChanged();
 				}
 			}
 		}

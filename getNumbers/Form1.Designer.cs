@@ -64,6 +64,8 @@
             this.button10 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -275,6 +277,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.textBox11);
+            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.textBox10);
             this.groupBox3.Controls.Add(this.button10);
@@ -292,7 +296,7 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Location = new System.Drawing.Point(21, 150);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(495, 196);
+            this.groupBox3.Size = new System.Drawing.Size(503, 214);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Pessoa";
@@ -379,7 +383,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(9, 167);
+            this.button8.Location = new System.Drawing.Point(9, 185);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 10;
@@ -389,7 +393,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(109, 167);
+            this.button9.Location = new System.Drawing.Point(221, 185);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 11;
@@ -398,7 +402,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(211, 167);
+            this.button10.Location = new System.Drawing.Point(389, 185);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 12;
@@ -421,6 +425,22 @@
             this.label10.Size = new System.Drawing.Size(89, 13);
             this.label10.TabIndex = 14;
             this.label10.Text = "Data Nascimento";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(28, 159);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(24, 13);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "NIF";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(63, 156);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(173, 20);
+            this.textBox11.TabIndex = 16;
             // 
             // Form1
             // 
@@ -482,6 +502,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label11;
     }
 }
 

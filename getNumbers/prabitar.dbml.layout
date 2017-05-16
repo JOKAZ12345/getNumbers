@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.75, 11.625" name="prabitar">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.375, 11.625" name="prabitar">
   <DataContextMoniker Name="/prabitarDataContext" />
   <nestedChildShapes>
     <classShape Id="f999bb27-1cb5-46b6-ad27-0b5b88de1442" absoluteBounds="5.25, 0.875, 2, 1.5785953776041666">
@@ -205,30 +205,30 @@
         <elementListCompartment Id="86d8b51a-3ed4-4729-bdc9-228a30e78929" absoluteBounds="3.14, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2bf19713-ed40-4ef3-9896-319c87cbe2b8" absoluteBounds="12.5, 7.625, 2, 2.3478011067708335">
+    <classShape Id="3e63859d-7377-40c5-a1f6-c5e44beaed96" absoluteBounds="12.125, 6.625, 2, 2.5401025390625">
       <DataClassMoniker Name="/prabitarDataContext/Pessoa" />
       <nestedChildShapes>
-        <elementListCompartment Id="b52ff7aa-223f-4557-8236-b508a83362e8" absoluteBounds="12.515, 8.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b8ba503a-d580-4b42-b138-548b0f082c2e" absoluteBounds="12.14, 7.0850000000000009, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(14.09375 : 7.625); (14.09375 : 3.53929768880208); (13.4895833333333 : 3.53929768880208 : JumpStart); (13.3229166666667 : 3.53929768880208 : JumpEnd); (9.11458283333333 : 3.53929768880208 : JumpStart); (8.94791616666667 : 3.53929768880208 : JumpEnd); (8.25 : 3.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.90625 : 6.625); (13.90625 : 3.53929768880208); (13.4895833333333 : 3.53929768880208 : JumpStart); (13.3229166666667 : 3.53929768880208 : JumpEnd); (9.11458283333333 : 3.53929768880208 : JumpStart); (8.94791616666667 : 3.53929768880208 : JumpEnd); (8.25 : 3.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/prabitarDataContext/Pessoa/Pessoa_Arrendatario" />
       <nodes>
-        <classShapeMoniker Id="2bf19713-ed40-4ef3-9896-319c87cbe2b8" />
+        <classShapeMoniker Id="3e63859d-7377-40c5-a1f6-c5e44beaed96" />
         <classShapeMoniker Id="7b10657d-59c0-47f7-a739-e0203a571e0b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(12.5 : 8.62824725651042); (10.3333333333333 : 8.62824725651042 : JumpStart); (10.1666666666667 : 8.62824725651042 : JumpEnd); (7.75 : 8.62824725651042); (7.75 : 8.5); (5.92708333333333 : 8.5 : JumpStart); (5.76041666666667 : 8.5 : JumpEnd); (4.406252 : 8.5); (4.406252 : 4.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(12.125 : 8.22199625651042); (10.3333333333333 : 8.22199625651042 : JumpStart); (10.1666666666667 : 8.22199625651042 : JumpEnd); (5.92708333333333 : 8.22199625651042 : JumpStart); (5.76041666666667 : 8.22199625651042 : JumpEnd); (4.406252 : 8.22199625651042); (4.406252 : 4.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/prabitarDataContext/Pessoa/Pessoa_Comprador" />
       <nodes>
-        <classShapeMoniker Id="2bf19713-ed40-4ef3-9896-319c87cbe2b8" />
+        <classShapeMoniker Id="3e63859d-7377-40c5-a1f6-c5e44beaed96" />
         <classShapeMoniker Id="c9b47d0b-90ae-489d-9b54-51b0d35f8889" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(12.5 : 9.12662362825521); (10.9062525 : 9.12662362825521); (10.9062525 : 9.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(12.125 : 9.1651025390625); (11.5 : 9.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Pessoa/Pessoa_Vendedor" />
       <nodes>
-        <classShapeMoniker Id="2bf19713-ed40-4ef3-9896-319c87cbe2b8" />
+        <classShapeMoniker Id="3e63859d-7377-40c5-a1f6-c5e44beaed96" />
         <classShapeMoniker Id="3da92fb9-c8ba-4c1c-b575-ede0091a2cab" />
       </nodes>
     </associationConnector>

@@ -165,6 +165,7 @@
       <Column Name="Profissao" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
       <Column Name="DataNascimento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Morada" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="NIF" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Pessoa_Arrendatario" Member="Arrendatarios" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Arrendatario" />
       <Association Name="Pessoa_Comprador" Member="Compradors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Comprador" />
       <Association Name="Pessoa_Vendedor" Member="Vendedors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Vendedor" />
