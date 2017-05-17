@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
-using HtmlDocument = System.Windows.Forms.HtmlDocument;
 
 namespace getNumbers
 {
@@ -72,10 +65,9 @@ namespace getNumbers
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
-            string localizacao = comboBox1.SelectedItem.ToString().ToLower().Replace(" ", "-").Replace("ã", "a"); // TODO: Check for more
+            var localizacao = comboBox1.SelectedItem.ToString().ToLower().Replace(" ", "-").Replace("ã", "a"); // TODO: Check for more
 
-            var doc = Webget.Load(idealistaURL + tipo + coimbra + figueira + localizacao + "/pagina-" + "1");
-            //var doc = Webget.Load("https://www.idealista.pt/comprar-casas/gois/alvares/");
+            var doc = Webget.Load(idealistaURL + tipo + coimbra + figueira + localizacao + "/pagina-" + "1" + "?ordem=atualizado-desc");
 
             if (doc == null)
                 return;
@@ -83,7 +75,7 @@ namespace getNumbers
             var numPages = NumPagesComprarCasa(doc);
 
             // TODO: Meter link genérico
-            for (var j = 1; j < numPages; j++, doc = Webget.Load(idealistaURL + tipo + coimbra + figueira + localizacao + "/pagina-" + j))
+            for (var j = 1; j < numPages; j++, doc = Webget.Load(idealistaURL + tipo + coimbra + figueira + localizacao + "/pagina-" + j + "?ordem=atualizado-desc"))
             {
                 var ourNode = doc.DocumentNode.SelectNodes("//*[@id=\"main-content\"]/div[2]/article");
 
@@ -140,7 +132,8 @@ namespace getNumbers
                                                             //tele = tele.Replace("+", "0").Replace(" ", "");
                                                             //var telefone = Convert.ToInt64(tele);
 
-                                                            if (!_agencias.Any(x => x == tele) && potencial.All(x => x.Telefone != tele))
+                                                            // TODO: Verificar se o anúncio já está na BD
+                                                            if (!_agencias.Any(x => x == tele) && potencial.All(x => x.Telefone != tele) && !potencial.All(x => url_imovel != null && x.URL.Contains(url_imovel)))
                                                             {
                                                                 imoveis.Add(new Imoveis(titulo, preco, url_imovel, tele));
                                                                 db.Potencials.InsertOnSubmit(new Potencial()
@@ -286,7 +279,6 @@ namespace getNumbers
 
             var _agencias = from a in db.Agencias select a;
 
-            var agencias = new List<Agencia>();
 
             try
             {
@@ -319,7 +311,7 @@ namespace getNumbers
 
                         res = doc.DocumentNode.SelectSingleNode("//*[@id=\"online\"]/span/span");
 
-                        string telefone = "";
+                        var telefone = "";
                         var link = "";
 
                         if (res != null)
@@ -331,8 +323,7 @@ namespace getNumbers
                             link = res.Attributes["href"].Value;
 
                         var a = new Agencia { Nome = imobiliaria, Telefone = telefone, URL = link, url_idealista = url };
-
-                        agencias.Add(a);
+                        new List<Agencia>().Add(a);
 
                         db.Agencias.InsertOnSubmit(a);
                     }
@@ -365,8 +356,8 @@ namespace getNumbers
 
         private void button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Isto vai limpar a prospeção que esteja na base de dados ao cruzar dados com Imobiliárias",
-                "Limpeza");
+            MessageBox.Show(@"Isto vai limpar a prospeção que esteja na base de dados ao cruzar dados com Imobiliárias",
+                @"Limpeza");
 
             var db = new prabitarDataContext();
 
@@ -384,7 +375,7 @@ namespace getNumbers
 
             db.SubmitChanges();
 
-            MessageBox.Show("Limpeza Feita!");
+            MessageBox.Show(@"Limpeza Feita!");
         }
 
         private void button7_Click(object sender, EventArgs e)
