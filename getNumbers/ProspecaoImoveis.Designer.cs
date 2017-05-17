@@ -37,11 +37,23 @@
             this.arrendarRBTN = new System.Windows.Forms.RadioButton();
             this.venderRBTN = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.idealistaCheckBox = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox5);
+            this.groupBox2.Controls.Add(this.checkBox4);
+            this.groupBox2.Controls.Add(this.checkBox3);
+            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.idealistaCheckBox);
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.button2);
@@ -143,6 +155,68 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(360, 19);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Exportar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // idealistaCheckBox
+            // 
+            this.idealistaCheckBox.AutoSize = true;
+            this.idealistaCheckBox.Checked = true;
+            this.idealistaCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.idealistaCheckBox.Location = new System.Drawing.Point(15, 139);
+            this.idealistaCheckBox.Name = "idealistaCheckBox";
+            this.idealistaCheckBox.Size = new System.Drawing.Size(65, 17);
+            this.idealistaCheckBox.TabIndex = 12;
+            this.idealistaCheckBox.Text = "Idealista";
+            this.idealistaCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(15, 162);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(47, 17);
+            this.checkBox2.TabIndex = 13;
+            this.checkBox2.Text = "OLX";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(15, 185);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(35, 17);
+            this.checkBox3.TabIndex = 14;
+            this.checkBox3.Text = "?!";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(94, 139);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(35, 17);
+            this.checkBox4.TabIndex = 15;
+            this.checkBox4.Text = "?!";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(94, 162);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(35, 17);
+            this.checkBox5.TabIndex = 16;
+            this.checkBox5.Text = "?!";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
             // ProspecaoImoveis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,5 +245,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox idealistaCheckBox;
     }
 }

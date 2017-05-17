@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -417,10 +418,66 @@ namespace getNumbers
                             db.Potencials.DeleteOnSubmit(potencial);
                     }
                 }
-                    
             }
 
             db.SubmitChanges();
         }
+
+        // Exportar dados em CSV ou .pdf
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var db = new prabitarDataContext();
+
+                var potencial = db.Potencials;
+
+                var folderBrowserDialog1 = new FolderBrowserDialog();
+
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                    CreateCSV(potencial.ToList(), folderBrowserDialog1.SelectedPath);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+            private static void CreateHeader<T>(List<T> list, TextWriter sw, string delimitador)
+            {
+                var properties = typeof(T).GetProperties();
+                for (var i = 0; i < properties.Length - 1; i++)
+                {
+                    sw.Write(properties[i].Name + delimitador);
+                }
+                var lastProp = properties[properties.Length - 1].Name;
+                sw.Write(lastProp + sw.NewLine);
+            }
+
+            private static void CreateRows<T>(IEnumerable<T> list, TextWriter sw, string delimitador)
+            {
+                foreach (var item in list)
+                {
+                    var properties = typeof(T).GetProperties();
+                    for (var i = 0; i < properties.Length - 1; i++)
+                    {
+                        var prop = properties[i];
+                        sw.Write(prop.GetValue(item) + delimitador);
+                    }
+                    var lastProp = properties[properties.Length - 1];
+                    sw.Write(lastProp.GetValue(item) + sw.NewLine);
+                }
+            }
+
+            public static void CreateCSV<T>(List<T> list, string filePath)
+            {
+                using (var sw = new StreamWriter(filePath))
+                {
+                    CreateHeader(list, sw, ";");
+                    CreateRows(list, sw, ";");
+                }
+            }
     }
 }
