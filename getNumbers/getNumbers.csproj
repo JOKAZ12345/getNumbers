@@ -94,6 +94,7 @@
     <Compile Include="ProspecaoImoveis.Designer.cs">
       <DependentUpon>ProspecaoImoveis.cs</DependentUpon>
     </Compile>
+    <Compile Include="SapoCasa.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
