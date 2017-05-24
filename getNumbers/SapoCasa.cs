@@ -34,15 +34,28 @@ namespace getNumbers
                 foreach (var node in nodes)
                 {
                     var link = SapoUrl + node.ChildNodes.FirstOrDefault(x => x.Name == "a")?.Attributes["href"].Value;
-                    /*var str = node.InnerText.Replace("\r", "").Replace("\n", "").Replace("\t", "#");
-                        // Mais fácil depois para procurar com "#"*/ // NAO VALE A PENA.. MAIS VALE ENTRAR DENTRO DO URL E SACAR CENAS
 
+                    if (!string.IsNullOrEmpty(link))
+                    {
+                        var imovel = Webget.Load(link);
 
-                    var imovel = Webget.Load(link);
+                        var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]").InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
-                    var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]").InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
+                        //var gps = imovel.DocumentNode.SelectNodes("//*[@id=\"MapaGis\"]/script[2]");
 
+                        foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
+                        {
+                            string s = script.InnerText;
 
+                            if (s.Contains("GoogleMap"))
+                            {
+                                var d = s;
+                            }
+
+                            HtmlTextNode text =
+                                (HtmlTextNode) script.ChildNodes.Single(x => x.NodeType == HtmlNodeType.Text);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

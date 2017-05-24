@@ -56,11 +56,20 @@ namespace getNumbers
                 textBox7.Text = pessoa.Telefone.ToString();
                 textBox8.Text = pessoa.Email;
                 textBox9.Text = pessoa.Morada;
-                textBox10.Text = pessoa.DataNascimento.ToString(); // TODO: Atenção não tou a pesquisar pela data nascimento
+                textBox10.Text = pessoa.DataNascimento.ToString();
+                    // TODO: Atenção não tou a pesquisar pela data nascimento
                 textBox11.Text = pessoa.NIF.ToString(); // TODO: Atenção não tou a pesquisar pelo NIF
             }
 
             else
+            {
+                var Pessoa = new Pessoa();
+
+                Pessoa.Nome = textBox5.Text;
+                Pessoa.BI = Convert.ToInt32(textBox6.Text);
+                Pessoa.Telefone = Convert.ToInt32(textBox7.Text);
+
+            }
                 MessageBox.Show("Não existe!");
         }
 
