@@ -6,6 +6,8 @@ using System.Net;
 using System.Windows.Forms;
 using HtmlAgilityPack;
 
+// TODO: Adicionar só potenciais Activos
+
 namespace getNumbers
 {
     public partial class ProspecaoImoveis : Form
