@@ -49,6 +49,7 @@ namespace getNumbers
 
                             if (s.Contains("GoogleMap"))
                             {
+                                //var flot = s.
                                 var d = s;
                             }
 
