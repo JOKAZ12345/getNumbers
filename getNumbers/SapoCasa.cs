@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Net;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
@@ -45,12 +46,37 @@ namespace getNumbers
 
                         foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
                         {
-                            string s = script.InnerText;
+                            string s = script.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
                             if (s.Contains("GoogleMap"))
                             {
-                                //var flot = s.
-                                var d = s;
+                                var re = new Regex("var CenterMarkerLat = (.*?);\\s*$");
+                                var m = re.Match(s);
+                                var d = m.Value.Split(';');
+                                string latitude;
+                                string longitude;
+                                string desc;
+
+                                foreach (var var in d)
+                                {
+                                    if (var.Contains("HouseLat"))
+                                    {
+                                        latitude = var.Split('\'')[1];
+                                    }
+
+                                    else if (var.Contains("HouseLon"))
+                                    {
+                                        longitude = var.Split('\'')[1];
+                                        break;
+                                    }
+
+                                    else if (var.Contains("HouseDescription"))
+                                    {
+                                        desc = var.Split('\'')[1];
+                                    }
+                                }
+
+                                var x = 1;
                             }
 
                             HtmlTextNode text =
