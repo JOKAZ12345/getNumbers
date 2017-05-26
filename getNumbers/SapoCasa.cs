@@ -34,53 +34,56 @@ namespace getNumbers
 
                 foreach (var node in nodes)
                 {
-                    var link = SapoUrl + node.ChildNodes.FirstOrDefault(x => x.Name == "a")?.Attributes["href"].Value;
+                    var link = SapoUrl + node.ChildNodes.FirstOrDefault(x => x.Name == "a")?.Attributes["href"]?.Value;
 
                     if (!string.IsNullOrEmpty(link))
                     {
                         var imovel = Webget.Load(link);
 
-                        var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]").InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
+                        var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]")?.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
-                        //var gps = imovel.DocumentNode.SelectNodes("//*[@id=\"MapaGis\"]/script[2]");
-
-                        foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
+                        if (preco != null)
                         {
-                            string s = script.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
+                            //var gps = imovel.DocumentNode.SelectNodes("//*[@id=\"MapaGis\"]/script[2]");
 
-                            if (s.Contains("GoogleMap"))
+                            foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
                             {
-                                var re = new Regex("var CenterMarkerLat = (.*?);\\s*$");
-                                var m = re.Match(s);
-                                var d = m.Value.Split(';');
-                                string latitude;
-                                string longitude;
-                                string desc;
+                                string s = script.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
-                                foreach (var var in d)
+                                if (s.Contains("GoogleMap"))
                                 {
-                                    if (var.Contains("HouseLat"))
+                                    var re = new Regex("var CenterMarkerLat = (.*?);\\s*$");
+                                    var m = re.Match(s);
+                                    var d = m.Value.Split(';');
+                                    string latitude;
+                                    string longitude;
+                                    string desc;
+
+                                    foreach (var var in d)
                                     {
-                                        latitude = var.Split('\'')[1];
+                                        if (var.Contains("HouseLat"))
+                                        {
+                                            latitude = var.Split('\'')[1];
+                                        }
+
+                                        else if (var.Contains("HouseLon"))
+                                        {
+                                            longitude = var.Split('\'')[1];
+                                            break;
+                                        }
+
+                                        else if (var.Contains("HouseDescription"))
+                                        {
+                                            desc = var.Split('\'')[1];
+                                        }
                                     }
 
-                                    else if (var.Contains("HouseLon"))
-                                    {
-                                        longitude = var.Split('\'')[1];
-                                        break;
-                                    }
-
-                                    else if (var.Contains("HouseDescription"))
-                                    {
-                                        desc = var.Split('\'')[1];
-                                    }
+                                    var x = 1;
                                 }
 
-                                var x = 1;
+                                HtmlTextNode text =
+                                    (HtmlTextNode)script.ChildNodes.Single(x => x.NodeType == HtmlNodeType.Text);
                             }
-
-                            HtmlTextNode text =
-                                (HtmlTextNode) script.ChildNodes.Single(x => x.NodeType == HtmlNodeType.Text);
                         }
                     }
                 }
