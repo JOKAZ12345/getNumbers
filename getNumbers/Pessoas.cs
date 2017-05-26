@@ -75,7 +75,7 @@ namespace getNumbers
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            var db = new prabitarDataContext();
         }
 
         private void button10_Click_1(object sender, EventArgs e)

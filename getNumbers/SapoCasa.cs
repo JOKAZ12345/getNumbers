@@ -32,7 +32,7 @@ namespace getNumbers
             {
                 //var doc = Webget.Load("https://casa.sapo.pt/Venda/Moradias/Figueira-da-Foz/?sa=6&nd=60&or=10&pn=1");
                 var doc = Webget.Load("https://casa.sapo.pt/Venda/Apartamentos/Figueira-da-Foz/?sa=6&or=10&pn=1");
-
+                
                 var nodes = doc.DocumentNode.SelectNodes("//*[@id=\"divSearchPageResults\"]/div");
 
                 var y = nodes[nodes.Count - 1].ChildNodes.FindFirst("p")?.InnerHtml;

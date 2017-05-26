@@ -58,9 +58,9 @@ namespace getNumbers
             this.gmap.Size = new System.Drawing.Size(664, 504);
             this.gmap.TabIndex = 0;
             this.gmap.Zoom = 5D;
+            this.gmap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gmap_OnMarkerClick);
             this.gmap.Load += new System.EventHandler(this.gmap_Load);
             this.gmap.Click += new System.EventHandler(this.gmap_Click);
-            this.gmap.OnMarkerClick += new MarkerClick(this.gmap_OnMarkerClick);
             // 
             // gmap2
             // 

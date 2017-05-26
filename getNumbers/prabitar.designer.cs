@@ -75,6 +75,9 @@ namespace getNumbers
     partial void InsertPotencial(Potencial instance);
     partial void UpdatePotencial(Potencial instance);
     partial void DeletePotencial(Potencial instance);
+    partial void InsertIgnorar(Ignorar instance);
+    partial void UpdateIgnorar(Ignorar instance);
+    partial void DeleteIgnorar(Ignorar instance);
     #endregion
 		
 		public prabitarDataContext() : 
@@ -224,6 +227,14 @@ namespace getNumbers
 			get
 			{
 				return this.GetTable<Potencial>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ignorar> Ignorars
+		{
+			get
+			{
+				return this.GetTable<Ignorar>();
 			}
 		}
 	}
@@ -3881,6 +3892,164 @@ namespace getNumbers
 					this._Activo = value;
 					this.SendPropertyChanged("Activo");
 					this.OnActivoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ignorar")]
+	public partial class Ignorar : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Ignorar_PK;
+		
+		private string _Telefone;
+		
+		private string _Descricao;
+		
+		private string _Data;
+		
+		private string _ProximaData;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIgnorar_PKChanging(int value);
+    partial void OnIgnorar_PKChanged();
+    partial void OnTelefoneChanging(string value);
+    partial void OnTelefoneChanged();
+    partial void OnDescricaoChanging(string value);
+    partial void OnDescricaoChanged();
+    partial void OnDataChanging(string value);
+    partial void OnDataChanged();
+    partial void OnProximaDataChanging(string value);
+    partial void OnProximaDataChanged();
+    #endregion
+		
+		public Ignorar()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ignorar_PK", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Ignorar_PK
+		{
+			get
+			{
+				return this._Ignorar_PK;
+			}
+			set
+			{
+				if ((this._Ignorar_PK != value))
+				{
+					this.OnIgnorar_PKChanging(value);
+					this.SendPropertyChanging();
+					this._Ignorar_PK = value;
+					this.SendPropertyChanged("Ignorar_PK");
+					this.OnIgnorar_PKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefone", DbType="VarChar(50)")]
+		public string Telefone
+		{
+			get
+			{
+				return this._Telefone;
+			}
+			set
+			{
+				if ((this._Telefone != value))
+				{
+					this.OnTelefoneChanging(value);
+					this.SendPropertyChanging();
+					this._Telefone = value;
+					this.SendPropertyChanged("Telefone");
+					this.OnTelefoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descricao", DbType="VarChar(350)")]
+		public string Descricao
+		{
+			get
+			{
+				return this._Descricao;
+			}
+			set
+			{
+				if ((this._Descricao != value))
+				{
+					this.OnDescricaoChanging(value);
+					this.SendPropertyChanging();
+					this._Descricao = value;
+					this.SendPropertyChanged("Descricao");
+					this.OnDescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data", DbType="VarChar(50)")]
+		public string Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProximaData", DbType="VarChar(50)")]
+		public string ProximaData
+		{
+			get
+			{
+				return this._ProximaData;
+			}
+			set
+			{
+				if ((this._ProximaData != value))
+				{
+					this.OnProximaDataChanging(value);
+					this.SendPropertyChanging();
+					this._ProximaData = value;
+					this.SendPropertyChanged("ProximaData");
+					this.OnProximaDataChanged();
 				}
 			}
 		}

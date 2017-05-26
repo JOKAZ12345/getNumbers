@@ -172,4 +172,13 @@
       <Column Name="Activo" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Ignorar" Member="Ignorars">
+    <Type Name="Ignorar">
+      <Column Name="Ignorar_PK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Telefone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
+      <Column Name="Data" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProximaData" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
