@@ -24,75 +24,127 @@ namespace getNumbers
         {
             var Webget = new HtmlWeb();
 
+            var Markers = new List<Marker>();
+
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
             try
             {
-                var doc = Webget.Load("https://casa.sapo.pt/Venda/Moradias/Figueira-da-Foz/?sa=6&nd=60&or=10");
+                //var doc = Webget.Load("https://casa.sapo.pt/Venda/Moradias/Figueira-da-Foz/?sa=6&nd=60&or=10&pn=1");
+                var doc = Webget.Load("https://casa.sapo.pt/Venda/Apartamentos/Figueira-da-Foz/?sa=6&or=10&pn=1");
 
                 var nodes = doc.DocumentNode.SelectNodes("//*[@id=\"divSearchPageResults\"]/div");
 
-                foreach (var node in nodes)
+                var y = nodes[nodes.Count - 1].ChildNodes.FindFirst("p")?.InnerHtml;
+
+                if (y != null)
                 {
-                    var link = SapoUrl + node.ChildNodes.FirstOrDefault(x => x.Name == "a")?.Attributes["href"]?.Value;
+                    var page = Convert.ToInt32(y.Substring(y.IndexOf('>', y.Length - "</a>\r\n\t".Length - 5)).Split('<')[0].Replace(">", ""));
 
-                    if (!string.IsNullOrEmpty(link))
+                    for (var i = 1; i <= page; i++)
                     {
-                        var imovel = Webget.Load(link);
-
-                        var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]")?.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
-
-                        if (preco != null)
+                        if (i != 1)
                         {
-                            //var gps = imovel.DocumentNode.SelectNodes("//*[@id=\"MapaGis\"]/script[2]");
+                            doc = Webget.Load("https://casa.sapo.pt/Venda/Apartamentos/Figueira-da-Foz/?sa=6&or=10&pn=#".Replace("#", i.ToString()));
 
-                            foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
+                            nodes = doc.DocumentNode.SelectNodes("//*[@id=\"divSearchPageResults\"]/div");
+                        }
+
+                        foreach (var node in nodes)
+                        {
+                            var getNode = node.ChildNodes.FirstOrDefault(x => x.Name == "a");
+
+                            if (getNode != null && getNode.Attributes.Any(x => x.Name.Equals("href")))
                             {
-                                string s = script.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
+                                var link = SapoUrl + getNode.Attributes["href"].Value;
 
-                                if (s.Contains("GoogleMap"))
+                                if (!string.IsNullOrEmpty(link))
                                 {
-                                    var re = new Regex("var CenterMarkerLat = (.*?);\\s*$");
-                                    var m = re.Match(s);
-                                    var d = m.Value.Split(';');
-                                    string latitude;
-                                    string longitude;
-                                    string desc;
+                                    var imovel = Webget.Load(link);
 
-                                    foreach (var var in d)
+                                    var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]")?.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
+
+                                    string data = null;
+
+                                    if (preco != null)
                                     {
-                                        if (var.Contains("HouseLat"))
-                                        {
-                                            latitude = var.Split('\'')[1];
-                                        }
+                                        var features = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailFeaturesList\"]");
 
-                                        else if (var.Contains("HouseLon"))
+                                        foreach (var feature in features.ChildNodes)
                                         {
-                                            longitude = var.Split('\'')[1];
-                                            break;
-                                        }
+                                            if (feature.Name.Contains("div"))
+                                            {
+                                                var text =
+                                                    feature.InnerHtml.Replace("<span>", "")
+                                                        .Replace("</span>", ":")
+                                                        .Replace("\n", "")
+                                                        .Replace("\t", "")
+                                                        .Replace("\r", "").Split(':');
 
-                                        else if (var.Contains("HouseDescription"))
+                                                if (text[0].Contains("Publicado"))
+                                                {
+                                                    data = text[1].Replace(" ", "");
+                                                }
+                                            }
+                                        }
+                                        foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
                                         {
-                                            desc = var.Split('\'')[1];
+                                            string s = script.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
+
+                                            if (s.Contains("GoogleMap"))
+                                            {
+                                                var re = new Regex("var CenterMarkerLat = (.*?);\\s*$");
+                                                var m = re.Match(s);
+                                                var d = m.Value.Split(';');
+                                                string latitude = null;
+                                                string longitude = null;
+                                                string desc = null;
+
+                                                foreach (var var in d)
+                                                {
+                                                    if (var.Contains("HouseLat"))
+                                                    {
+                                                        latitude = var.Split('\'')[1];
+                                                    }
+
+                                                    else if (var.Contains("HouseLon"))
+                                                    {
+                                                        longitude = var.Split('\'')[1];
+
+                                                        if (latitude != null && longitude != null && desc != null)
+                                                        {
+                                                            var marker = new Marker("Sapo: " + desc + "\nPreço: " + preco, Convert.ToDouble(longitude.Replace('.', ',')),
+                                                                Convert.ToDouble(latitude.Replace('.', ',')), link, data);
+
+                                                            Markers.Add(marker);
+                                                        }
+
+                                                        break;
+                                                    }
+
+                                                    else if (var.Contains("HouseDescription"))
+                                                    {
+                                                        desc = var.Split('\'')[1];
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
-
-                                    var x = 1;
                                 }
-
-                                HtmlTextNode text =
-                                    (HtmlTextNode)script.ChildNodes.Single(x => x.NodeType == HtmlNodeType.Text);
                             }
                         }
                     }
                 }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
 
+            var mapa = new gmap2();
+            mapa.Show();
+            mapa.addMarkers(Markers);
         }
     }
 }

@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Net;
 using System.Windows.Forms;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using HtmlAgilityPack;
+using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 // TODO: Adicionar só potenciais Activos
 
@@ -138,7 +144,7 @@ namespace getNumbers
                                                             if (!_agencias.Any(x => x == tele) && potencial.All(x => x.Telefone != tele) && !potencial.All(x => url_imovel != null && x.URL.Contains(url_imovel)))
                                                             {
                                                                 imoveis.Add(new Imoveis(titulo, preco, url_imovel, tele));
-                                                                db.Potencials.InsertOnSubmit(new Potencial()
+                                                                db.Potencials.InsertOnSubmit(new Potencial
                                                                 {
                                                                     Telefone = tele,
                                                                     TituloAnuncio = titulo,
@@ -242,11 +248,11 @@ namespace getNumbers
                                                 imobiliaria => imobiliaria.SelectSingleNode("dd/a").InnerHtml));
 
                                     if (i == 1) // 1ª página
-                                        url = url + "-" + (i + 1).ToString();
+                                        url = url + "-" + (i + 1);
 
                                     else
                                     {
-                                        url = url.Replace("-" + i.ToString(), "-" + (i + 1).ToString());
+                                        url = url.Replace("-" + i, "-" + (i + 1));
                                     }
 
                                     dist = Webget.Load(url);
@@ -340,7 +346,7 @@ namespace getNumbers
             db.SubmitChanges();
         }
 
-        private static int NumPagesComprarCasa(HtmlAgilityPack.HtmlDocument doc)
+        private static int NumPagesComprarCasa(HtmlDocument doc)
         {
             var node = doc.DocumentNode.SelectNodes("//*[@id=\"main-content\"]/div[2]/div/ul/li");
 
@@ -478,6 +484,12 @@ namespace getNumbers
             var sapo = new SapoCasa();
 
             sapo.test();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var mapa = new gmap2();
+            mapa.Show(this);
         }
     }
 }
