@@ -66,7 +66,7 @@ namespace getNumbers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 593);
+            this.ClientSize = new System.Drawing.Size(997, 593);
             this.Controls.Add(this.gmap);
             this.Name = "gmap2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

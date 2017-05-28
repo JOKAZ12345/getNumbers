@@ -50,7 +50,7 @@ namespace getNumbers
                 markers.Markers.Add(gmarker);
             }
 
-            else if (diff.Days > 150 && diff.Days < 200)
+            else if (diff.Days > 170 && diff.Days < 200)
             {
                 var gmarker = new GMarkerGoogle(new PointLatLng(lat, lon), GMarkerGoogleType.orange_small)
                 {
@@ -64,7 +64,14 @@ namespace getNumbers
 
             else
             {
-                var gmarker = new GMarkerGoogle(new PointLatLng(lat, lon), GMarkerGoogleType.green_small)
+                var color = GMarkerGoogleType.green_small;
+
+                if (desc.ToLower().Contains("max"))
+                {
+                    color = GMarkerGoogleType.brown_small;
+                }
+
+                var gmarker = new GMarkerGoogle(new PointLatLng(lat, lon), color)
                 {
                     ToolTipText = desc,
                     ToolTipMode = MarkerTooltipMode.OnMouseOver,
@@ -94,7 +101,7 @@ namespace getNumbers
 
                 if (res == GeoCoderStatusCode.G_GEO_SUCCESS)
                 {   //TODO: ADD DATA DO OUTRO ANUNCIO
-                    addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Telefone, markers, item.URL, null);
+                    addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Telefone + "\n" + item.Preco, markers, item.URL, null);
                 }
             }
 
@@ -117,6 +124,11 @@ namespace getNumbers
             {
                 
             }*/
+        }
+
+        private void gMapControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
