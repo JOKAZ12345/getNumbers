@@ -88,6 +88,33 @@ namespace getNumbers
             System.Diagnostics.Process.Start((string) ((GMapMarker) sender).Tag);
         }
 
+        public void addMarkersPrabitar()
+        {
+            var markers = new GMapOverlay("markers");
+
+            var db = new prabitarDataContext();
+
+            foreach (var imovel in db.Imovels)
+            {
+                var x = new PointLatLng();
+                var res = gmap.GetPositionByKeywords(imovel.Localizacao, out x);
+
+                if (res == GeoCoderStatusCode.G_GEO_SUCCESS)
+                {   //TODO: ADD DATA DO OUTRO ANUNCIO
+                    var gmarker = new GMarkerGoogle(new PointLatLng(x.Lat, x.Lng), GMarkerGoogleType.red_pushpin)
+                    {
+                        ToolTipText = imovel.Tipo,
+                        ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                        Tag = imovel.Localizacao
+                    };
+
+                    markers.Markers.Add(gmarker);
+                }
+            }
+
+            gmap.Overlays.Add(markers);
+        }
+
         public void addMarkers(List<Marker> markersList)
         {
             var markers = new GMapOverlay("markers");
@@ -111,6 +138,8 @@ namespace getNumbers
             }
 
             gmap.Overlays.Add(markers);
+
+            addMarkersPrabitar();
         }
 
         private void gmap_Load(object sender, EventArgs e)
