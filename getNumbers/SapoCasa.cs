@@ -30,6 +30,7 @@ namespace getNumbers
 
             string url = "https://casa.sapo.pt/Venda/Apartamentos/Figueira-da-Foz/?sa=6&or=10&pn=#";
             string ur2 = "https://casa.sapo.pt/Venda/Moradias/Figueira-da-Foz/?sa=6&or=10&pn=#";
+            string gar = "https://casa.sapo.pt/Venda/Garagens/Figueira-da-Foz/?sa=6&pn=#";
             string _url = "";
             try
             {
@@ -43,9 +44,15 @@ namespace getNumbers
                         _url = url;
                         doc = Webget.Load(_url.Replace("#", "1"));
                     }
-                    else
+                    else if (t == 1)
                     {
                         _url = ur2;
+                        doc = Webget.Load(_url.Replace("#", "1"));
+                    }
+
+                    else
+                    {
+                        _url = gar;
                         doc = Webget.Load(_url.Replace("#", "1"));
                     }
 
