@@ -31,6 +31,7 @@ namespace getNumbers
             GMaps.Instance.Mode = AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Figueira da Foz, Portugal");
             gmap.ShowCenter = false;
+            gmap.DragButton = MouseButtons.Left;
         }
 
         private void addPonto(double lat, double lon, string desc, GMapOverlay markers, string url, string data)

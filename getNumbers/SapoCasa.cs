@@ -83,6 +83,12 @@ namespace getNumbers
 
                                         var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]")?.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
+                                        var titulo =
+                                            imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyTitle\"]")
+                                                .ChildNodes[0].InnerText.Replace("\n", "")
+                                                .Replace("\t", "")
+                                                .Replace("\r", "");
+
                                         string data = null;
 
                                         if (preco != null)
@@ -108,6 +114,12 @@ namespace getNumbers
                                                     }
                                                 }
                                             }
+
+                                            var db = new prabitarDataContext();
+                                            var potencial = db.Potencials;
+
+                                            var x = new Potencial {Preco = Convert.ToDecimal(preco.TrimEnd('€')), TituloAnuncio = titulo, URL = link};
+
                                             foreach (var script in imovel.DocumentNode.Descendants("script").ToArray())
                                             {
                                                 string s = script.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");

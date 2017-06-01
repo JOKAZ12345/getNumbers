@@ -3915,7 +3915,12 @@ namespace getNumbers
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
+
+        /*public static implicit operator Potencial(Potencial v)
+        {
+            throw new NotImplementedException();
+        }*/
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ignorar")]
 	public partial class Ignorar : INotifyPropertyChanging, INotifyPropertyChanged
