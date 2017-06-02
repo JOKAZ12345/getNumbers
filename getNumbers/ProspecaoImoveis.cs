@@ -137,8 +137,7 @@ namespace getNumbers
 
                                                         if (tele != null)
                                                         {
-                                                            //tele = tele.Replace("+", "0").Replace(" ", "");
-                                                            //var telefone = Convert.ToInt64(tele);
+                                                            // Falta guardar aqui o nome do proprietário
 
                                                             // TODO: Verificar se o anúncio já está na BD
                                                             if (!_agencias.Any(x => x == tele) && potencial.All(x => x.Telefone != tele) && !potencial.All(x => url_imovel != null && x.URL.Contains(url_imovel)))
@@ -488,7 +487,7 @@ namespace getNumbers
 
         private void button8_Click(object sender, EventArgs e)
         {
-            var mapa = new gmap2();
+            var mapa = new Resultados_Prospecao();
             mapa.Show(this);
         }
     }
