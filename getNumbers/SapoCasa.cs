@@ -91,7 +91,7 @@ namespace getNumbers
                                         var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyPrice\"]")?.InnerText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
                                         var titulo =
-                                            imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyTitle\"]")
+                                            imovel.DocumentNode.SelectSingleNode("//*[@class=\"detailPropertyTitle\"]")?
                                                 .ChildNodes[0].InnerText.Replace("\n", "")
                                                 .Replace("\t", "")
                                                 .Replace("\r", "");
