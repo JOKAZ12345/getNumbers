@@ -52,6 +52,11 @@ namespace getNumbers
 
                 var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"xxxx-large not-arranged\"]").InnerText;
                 var contactos = imovel.DocumentNode.SelectNodes("//*[@class=\"offer-sidebar__buttons contact_methods\"]");
+
+                // OLX PROCURAR POR
+                // var phonetoken = 'xxxxxxxx';
+                // Ir buscar o ID do anúncio 'id':'AsC3l'
+                // URL: 
             }
 
             /*foreach (var preco in preco_nodes)
