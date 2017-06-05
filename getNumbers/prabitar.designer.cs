@@ -72,12 +72,12 @@ namespace getNumbers
     partial void InsertPessoa(Pessoa instance);
     partial void UpdatePessoa(Pessoa instance);
     partial void DeletePessoa(Pessoa instance);
-    partial void InsertPotencial(Potencial instance);
-    partial void UpdatePotencial(Potencial instance);
-    partial void DeletePotencial(Potencial instance);
     partial void InsertIgnorar(Ignorar instance);
     partial void UpdateIgnorar(Ignorar instance);
     partial void DeleteIgnorar(Ignorar instance);
+    partial void InsertPotencial(Potencial instance);
+    partial void UpdatePotencial(Potencial instance);
+    partial void DeletePotencial(Potencial instance);
     #endregion
 		
 		public prabitarDataContext() : 
@@ -222,19 +222,19 @@ namespace getNumbers
 			}
 		}
 		
-		public System.Data.Linq.Table<Potencial> Potencials
-		{
-			get
-			{
-				return this.GetTable<Potencial>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Ignorar> Ignorars
 		{
 			get
 			{
 				return this.GetTable<Ignorar>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Potencial> Potencials
+		{
+			get
+			{
+				return this.GetTable<Potencial>();
 			}
 		}
 	}
@@ -3711,217 +3711,6 @@ namespace getNumbers
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Potencial")]
-	public partial class Potencial : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Candidato_ID;
-		
-		private string _Telefone;
-		
-		private string _Nome;
-		
-		private string _TituloAnuncio;
-		
-		private string _URL;
-		
-		private System.Nullable<decimal> _Preco;
-		
-		private System.Nullable<int> _Activo;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCandidato_IDChanging(int value);
-    partial void OnCandidato_IDChanged();
-    partial void OnTelefoneChanging(string value);
-    partial void OnTelefoneChanged();
-    partial void OnNomeChanging(string value);
-    partial void OnNomeChanged();
-    partial void OnTituloAnuncioChanging(string value);
-    partial void OnTituloAnuncioChanged();
-    partial void OnURLChanging(string value);
-    partial void OnURLChanged();
-    partial void OnPrecoChanging(System.Nullable<decimal> value);
-    partial void OnPrecoChanged();
-    partial void OnActivoChanging(System.Nullable<int> value);
-    partial void OnActivoChanged();
-    #endregion
-		
-		public Potencial()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Candidato_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Candidato_ID
-		{
-			get
-			{
-				return this._Candidato_ID;
-			}
-			set
-			{
-				if ((this._Candidato_ID != value))
-				{
-					this.OnCandidato_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Candidato_ID = value;
-					this.SendPropertyChanged("Candidato_ID");
-					this.OnCandidato_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefone", DbType="VarChar(50)")]
-		public string Telefone
-		{
-			get
-			{
-				return this._Telefone;
-			}
-			set
-			{
-				if ((this._Telefone != value))
-				{
-					this.OnTelefoneChanging(value);
-					this.SendPropertyChanging();
-					this._Telefone = value;
-					this.SendPropertyChanged("Telefone");
-					this.OnTelefoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(200)")]
-		public string Nome
-		{
-			get
-			{
-				return this._Nome;
-			}
-			set
-			{
-				if ((this._Nome != value))
-				{
-					this.OnNomeChanging(value);
-					this.SendPropertyChanging();
-					this._Nome = value;
-					this.SendPropertyChanged("Nome");
-					this.OnNomeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TituloAnuncio", DbType="VarChar(250)")]
-		public string TituloAnuncio
-		{
-			get
-			{
-				return this._TituloAnuncio;
-			}
-			set
-			{
-				if ((this._TituloAnuncio != value))
-				{
-					this.OnTituloAnuncioChanging(value);
-					this.SendPropertyChanging();
-					this._TituloAnuncio = value;
-					this.SendPropertyChanged("TituloAnuncio");
-					this.OnTituloAnuncioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL", DbType="VarChar(200)")]
-		public string URL
-		{
-			get
-			{
-				return this._URL;
-			}
-			set
-			{
-				if ((this._URL != value))
-				{
-					this.OnURLChanging(value);
-					this.SendPropertyChanging();
-					this._URL = value;
-					this.SendPropertyChanged("URL");
-					this.OnURLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Preco
-		{
-			get
-			{
-				return this._Preco;
-			}
-			set
-			{
-				if ((this._Preco != value))
-				{
-					this.OnPrecoChanging(value);
-					this.SendPropertyChanging();
-					this._Preco = value;
-					this.SendPropertyChanged("Preco");
-					this.OnPrecoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Int")]
-		public System.Nullable<int> Activo
-		{
-			get
-			{
-				return this._Activo;
-			}
-			set
-			{
-				if ((this._Activo != value))
-				{
-					this.OnActivoChanging(value);
-					this.SendPropertyChanging();
-					this._Activo = value;
-					this.SendPropertyChanged("Activo");
-					this.OnActivoChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-
-        /*public static implicit operator Potencial(Potencial v)
-        {
-            throw new NotImplementedException();
-        }*/
-    }
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ignorar")]
 	public partial class Ignorar : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4055,6 +3844,236 @@ namespace getNumbers
 					this._ProximaData = value;
 					this.SendPropertyChanged("ProximaData");
 					this.OnProximaDataChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Potencial")]
+	public partial class Potencial : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Candidato_ID;
+		
+		private string _Telefone;
+		
+		private string _Nome;
+		
+		private string _TituloAnuncio;
+		
+		private string _URL;
+		
+		private System.Nullable<decimal> _Preco;
+		
+		private System.Nullable<int> _Activo;
+		
+		private string _Coordenadas;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCandidato_IDChanging(int value);
+    partial void OnCandidato_IDChanged();
+    partial void OnTelefoneChanging(string value);
+    partial void OnTelefoneChanged();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    partial void OnTituloAnuncioChanging(string value);
+    partial void OnTituloAnuncioChanged();
+    partial void OnURLChanging(string value);
+    partial void OnURLChanged();
+    partial void OnPrecoChanging(System.Nullable<decimal> value);
+    partial void OnPrecoChanged();
+    partial void OnActivoChanging(System.Nullable<int> value);
+    partial void OnActivoChanged();
+    partial void OnCoordenadasChanging(string value);
+    partial void OnCoordenadasChanged();
+    #endregion
+		
+		public Potencial()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Candidato_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Candidato_ID
+		{
+			get
+			{
+				return this._Candidato_ID;
+			}
+			set
+			{
+				if ((this._Candidato_ID != value))
+				{
+					this.OnCandidato_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Candidato_ID = value;
+					this.SendPropertyChanged("Candidato_ID");
+					this.OnCandidato_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefone", DbType="VarChar(50)")]
+		public string Telefone
+		{
+			get
+			{
+				return this._Telefone;
+			}
+			set
+			{
+				if ((this._Telefone != value))
+				{
+					this.OnTelefoneChanging(value);
+					this.SendPropertyChanging();
+					this._Telefone = value;
+					this.SendPropertyChanged("Telefone");
+					this.OnTelefoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(200)")]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TituloAnuncio", DbType="VarChar(450)")]
+		public string TituloAnuncio
+		{
+			get
+			{
+				return this._TituloAnuncio;
+			}
+			set
+			{
+				if ((this._TituloAnuncio != value))
+				{
+					this.OnTituloAnuncioChanging(value);
+					this.SendPropertyChanging();
+					this._TituloAnuncio = value;
+					this.SendPropertyChanged("TituloAnuncio");
+					this.OnTituloAnuncioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_URL", DbType="VarChar(400)")]
+		public string URL
+		{
+			get
+			{
+				return this._URL;
+			}
+			set
+			{
+				if ((this._URL != value))
+				{
+					this.OnURLChanging(value);
+					this.SendPropertyChanging();
+					this._URL = value;
+					this.SendPropertyChanged("URL");
+					this.OnURLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Preco
+		{
+			get
+			{
+				return this._Preco;
+			}
+			set
+			{
+				if ((this._Preco != value))
+				{
+					this.OnPrecoChanging(value);
+					this.SendPropertyChanging();
+					this._Preco = value;
+					this.SendPropertyChanged("Preco");
+					this.OnPrecoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Activo", DbType="Int")]
+		public System.Nullable<int> Activo
+		{
+			get
+			{
+				return this._Activo;
+			}
+			set
+			{
+				if ((this._Activo != value))
+				{
+					this.OnActivoChanging(value);
+					this.SendPropertyChanging();
+					this._Activo = value;
+					this.SendPropertyChanged("Activo");
+					this.OnActivoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Coordenadas", DbType="VarChar(350)")]
+		public string Coordenadas
+		{
+			get
+			{
+				return this._Coordenadas;
+			}
+			set
+			{
+				if ((this._Coordenadas != value))
+				{
+					this.OnCoordenadasChanging(value);
+					this.SendPropertyChanging();
+					this._Coordenadas = value;
+					this.SendPropertyChanged("Coordenadas");
+					this.OnCoordenadasChanged();
 				}
 			}
 		}

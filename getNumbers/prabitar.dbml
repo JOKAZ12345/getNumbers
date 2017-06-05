@@ -161,17 +161,6 @@
       <Association Name="Pessoa_Vendedor" Member="Vendedors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Vendedor" />
     </Type>
   </Table>
-  <Table Name="dbo.Potencial" Member="Potencials">
-    <Type Name="Potencial">
-      <Column Name="Candidato_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Telefone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Nome" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="TituloAnuncio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="URL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Activo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Ignorar" Member="Ignorars">
     <Type Name="Ignorar">
       <Column Name="Ignorar_PK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -179,6 +168,18 @@
       <Column Name="Descricao" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
       <Column Name="Data" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ProximaData" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Potencial" Member="Potencials">
+    <Type Name="Potencial">
+      <Column Name="Candidato_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Telefone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TituloAnuncio" Type="System.String" DbType="VarChar(450)" CanBeNull="true" />
+      <Column Name="URL" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Activo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Coordenadas" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

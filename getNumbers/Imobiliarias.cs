@@ -41,7 +41,8 @@ namespace getNumbers
             var db = new prabitarDataContext();
 
             // Todo: Eu por enquanto deixo adicionar agências repetidas
-            if (!string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox1.Text))
+            if (!string.IsNullOrEmpty(textBox2.Text) 
+                | !string.IsNullOrEmpty(textBox1.Text))
             {
                 var a = new Agencia
                 {

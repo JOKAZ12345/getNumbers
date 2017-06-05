@@ -113,6 +113,7 @@
     <Compile Include="gmap2.Designer.cs">
       <DependentUpon>gmap2.cs</DependentUpon>
     </Compile>
+    <Compile Include="olx.cs" />
     <Compile Include="Pessoas.cs">
       <SubType>Form</SubType>
     </Compile>
