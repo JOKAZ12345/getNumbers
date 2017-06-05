@@ -33,7 +33,7 @@
         <elementListCompartment Id="48c08bb8-e361-4d9d-86fd-155240b1db90" absoluteBounds="3.015, 3.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.609375 : 2.45359537760417); (5.609375 : 4.72101966471354); (5 : 4.72101966471354)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.609375 : 2.45359537760417); (5.609375 : 4.72101966471354); (5 : 4.72101966471354)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/prabitarDataContext/Arrendamento/Arrendamento_Comprador" />
       <nodes>
         <classShapeMoniker Id="f999bb27-1cb5-46b6-ad27-0b5b88de1442" />
@@ -52,7 +52,7 @@
         <elementListCompartment Id="9607d881-2d1f-48ff-8e8f-8cf92269a1ff" absoluteBounds="9.89, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4 : 4.89589680989583); (4 : 5.38544840494792); (5.88541666666667 : 5.38544840494792 : JumpStart); (6.05208333333333 : 5.38544840494792 : JumpEnd); (6.63541416666667 : 5.38544840494792 : JumpStart); (6.80208083333333 : 5.38544840494792 : JumpEnd); (9.875 : 5.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4 : 4.89589680989583); (4 : 5.38544840494792); (5.88541666666667 : 5.38544840494792 : JumpStart); (6.05208333333333 : 5.38544840494792 : JumpEnd); (6.63541416666667 : 5.38544840494792 : JumpStart); (6.80208083333333 : 5.38544840494792 : JumpEnd); (7.54166666666667 : 5.38544840494792 : JumpStart); (7.70833333333333 : 5.38544840494792 : JumpEnd); (9.875 : 5.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Comprador/Comprador_Desejo" />
       <nodes>
         <classShapeMoniker Id="c9b47d0b-90ae-489d-9b54-51b0d35f8889" />
@@ -65,35 +65,35 @@
         <elementListCompartment Id="fc1567c3-5a7d-4ac9-8442-25be52f40a89" absoluteBounds="1.7650000000000001, 6.085, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.75 : 5.62653746153846); (4.12653746153846 : 5.25); (5.88541666666667 : 5.25 : JumpStart); (6.05208333333333 : 5.25 : JumpEnd); (6.63541416666667 : 5.25 : JumpStart); (6.80208083333333 : 5.25 : JumpEnd); (9.0312495 : 5.25); (9.0312495 : 2.44399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.75 : 5.62653746153846); (4.12653746153846 : 5.25); (5.88541666666667 : 5.25 : JumpStart); (6.05208333333333 : 5.25 : JumpEnd); (6.63541416666667 : 5.25 : JumpStart); (6.80208083333333 : 5.25 : JumpEnd); (7.54166666666667 : 5.25 : JumpStart); (7.70833333333333 : 5.25 : JumpEnd); (9.0312495 : 5.25); (9.0312495 : 2.44399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Imovel/Imovel_Arrendar" />
       <nodes>
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
         <classShapeMoniker Id="d77ff466-b4ab-462b-80ce-4424170dd978" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.75 : 6.6527511570638); (5.88541666666667 : 6.6527511570638 : JumpStart); (6.05208333333333 : 6.6527511570638 : JumpEnd); (6.63541416666667 : 6.6527511570638 : JumpStart); (6.80208083333333 : 6.6527511570638 : JumpEnd); (7.625 : 6.6527511570638); (7.625 : 4.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.75 : 6.6527511570638); (7.625 : 6.6527511570638); (7.625 : 4.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Imovel/Imovel_Arrendatario" />
       <nodes>
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
         <classShapeMoniker Id="7b10657d-59c0-47f7-a739-e0203a571e0b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.25 : 5.625); (3.25 : 4.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.25 : 5.625); (3.25 : 4.89589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Imovel/Imovel_Comprador" />
       <nodes>
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
         <classShapeMoniker Id="c9b47d0b-90ae-489d-9b54-51b0d35f8889" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.125 : 5.625); (2.125 : 4.19399251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.125 : 5.625); (2.125 : 4.19399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Imovel/Imovel_Comprar" />
       <nodes>
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
         <classShapeMoniker Id="48d2cf5a-401b-4d80-a715-84f11db9d826" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.7187475 : 4.57859537760417); (6.7187475 : 7.2742518141276); (3.75 : 7.2742518141276)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.7187475 : 4.57859537760417); (6.7187475 : 7.2742518141276); (6.05208333333333 : 7.2742518141276 : JumpStart); (5.88541666666667 : 7.2742518141276 : JumpEnd); (3.75 : 7.2742518141276)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Arrendatario/Arrendatario_Imovel" />
       <nodes>
         <classShapeMoniker Id="7b10657d-59c0-47f7-a739-e0203a571e0b" />
@@ -113,7 +113,7 @@
         <elementListCompartment Id="a1be65de-ba50-4d67-8681-88ac850d0824" absoluteBounds="7.765, 6.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.75 : 7.09699625651042); (5.88541666666667 : 7.09699625651042 : JumpStart); (6.05208333333333 : 7.09699625651042 : JumpEnd); (6.63541416666667 : 7.09699625651042 : JumpStart); (6.80208083333333 : 7.09699625651042 : JumpEnd); (7.75 : 7.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.75 : 7.09699625651042); (4.44791866666667 : 7.09699625651042 : JumpStart); (4.61458533333333 : 7.09699625651042 : JumpEnd); (5.88541666666667 : 7.09699625651042 : JumpStart); (6.05208333333333 : 7.09699625651042 : JumpEnd); (6.63541416666667 : 7.09699625651042 : JumpStart); (6.80208083333333 : 7.09699625651042 : JumpEnd); (7.75 : 7.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Imovel/Imovel_Permuta" />
       <nodes>
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
@@ -126,14 +126,14 @@
         <elementListCompartment Id="c5f32ce6-309b-4437-9881-4031b162e1d1" absoluteBounds="11.64, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(13.40625 : 3.32859537760417); (13.40625 : 5.79687325); (12.0833333333333 : 5.79687325 : JumpStart); (11.9166666666667 : 5.79687325 : JumpEnd); (6.80208083333333 : 5.79687325 : JumpStart); (6.63541416666667 : 5.79687325 : JumpEnd); (6.05208333333333 : 5.79687325 : JumpStart); (5.88541666666667 : 5.79687325 : JumpEnd); (3.75 : 5.79687325)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(13.40625 : 3.32859537760417); (13.40625 : 5.79687325); (7.70833333333333 : 5.79687325 : JumpStart); (7.54166666666667 : 5.79687325 : JumpEnd); (6.80208083333333 : 5.79687325 : JumpStart); (6.63541416666667 : 5.79687325 : JumpEnd); (6.05208333333333 : 5.79687325 : JumpStart); (5.88541666666667 : 5.79687325 : JumpEnd); (3.75 : 5.79687325)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Preco/Preco_Imovel" />
       <nodes>
         <classShapeMoniker Id="cd4ae696-588e-46e7-a5c0-7b0966255bce" />
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.75 : 6.30600738997396); (6.63541416666667 : 6.30600738997396 : JumpStart); (6.80208083333333 : 6.30600738997396 : JumpEnd); (12 : 6.30600738997396); (12 : 3.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.75 : 6.30600738997396); (4.44791866666667 : 6.30600738997396 : JumpStart); (4.61458533333333 : 6.30600738997396 : JumpEnd); (5.88541666666667 : 6.30600738997396 : JumpStart); (6.05208333333333 : 6.30600738997396 : JumpEnd); (6.63541416666667 : 6.30600738997396 : JumpStart); (6.80208083333333 : 6.30600738997396 : JumpEnd); (7.54166666666667 : 6.30600738997396 : JumpStart); (7.70833333333333 : 6.30600738997396 : JumpEnd); (10.1666666666667 : 6.30600738997396 : JumpStart); (10.3333333333333 : 6.30600738997396 : JumpEnd); (12 : 6.30600738997396); (12 : 3.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Imovel/Imovel_Preco" />
       <nodes>
         <classShapeMoniker Id="6cb1dbdf-2ec8-44ac-8920-cf02cc0e2605" />
@@ -159,7 +159,7 @@
         <elementListCompartment Id="93a8a70b-991d-4e6c-a81a-d1f3bf716785" absoluteBounds="9.515, 10.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.25 : 9.625); (10.25 : 6.11200977994792); (7.70833333333333 : 6.11200977994792 : JumpStart); (7.54166666666667 : 6.11200977994792 : JumpEnd); (6.80208083333333 : 6.11200977994792 : JumpStart); (6.63541416666667 : 6.11200977994792 : JumpEnd); (6.05208333333333 : 6.11200977994792 : JumpStart); (5.88541666666667 : 6.11200977994792 : JumpEnd); (4.61458533333333 : 6.11200977994792 : JumpStart); (4.44791866666667 : 6.11200977994792 : JumpEnd); (3.75 : 6.11200977994792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(10.25 : 9.625); (10.25 : 6.11200977994792); (7.70833333333333 : 6.11200977994792 : JumpStart); (7.54166666666667 : 6.11200977994792 : JumpEnd); (6.80208083333333 : 6.11200977994792 : JumpStart); (6.63541416666667 : 6.11200977994792 : JumpEnd); (6.05208333333333 : 6.11200977994792 : JumpStart); (5.88541666666667 : 6.11200977994792 : JumpEnd); (3.75 : 6.11200977994792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Vendedor/Vendedor_Imovel" />
       <nodes>
         <classShapeMoniker Id="3da92fb9-c8ba-4c1c-b575-ede0091a2cab" />
@@ -212,7 +212,7 @@
         <classShapeMoniker Id="7b10657d-59c0-47f7-a739-e0203a571e0b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(12.125 : 8.22199625651042); (6.05208333333333 : 8.22199625651042 : JumpStart); (5.88541666666667 : 8.22199625651042 : JumpEnd); (4.531252 : 8.22199625651042); (4.531252 : 4.89589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(12.125 : 8.22199625651042); (10.3333333333333 : 8.22199625651042 : JumpStart); (10.1666666666667 : 8.22199625651042 : JumpEnd); (6.05208333333333 : 8.22199625651042 : JumpStart); (5.88541666666667 : 8.22199625651042 : JumpEnd); (4.531252 : 8.22199625651042); (4.531252 : 4.89589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/prabitarDataContext/Pessoa/Pessoa_Comprador" />
       <nodes>
         <classShapeMoniker Id="3e63859d-7377-40c5-a1f6-c5e44beaed96" />
@@ -226,16 +226,16 @@
         <classShapeMoniker Id="3da92fb9-c8ba-4c1c-b575-ede0091a2cab" />
       </nodes>
     </associationConnector>
-    <classShape Id="5646642f-cc77-42d7-a681-ea74eaf7ee6a" absoluteBounds="3, 0.5, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/prabitarDataContext/Potencial" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d3c056e8-0db7-48e6-9ecc-6380865e857a" absoluteBounds="3.015, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="15ca35c2-f5bd-4c53-906d-4626b8ed1dba" absoluteBounds="0.625, 2.5, 2, 1.7708968098958331">
       <DataClassMoniker Name="/prabitarDataContext/Ignorar" />
       <nestedChildShapes>
         <elementListCompartment Id="0491763e-60ff-4e86-a387-20fcc4a5f7db" absoluteBounds="0.64, 2.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9e186aef-db50-472c-9cef-4061158edf78" absoluteBounds="3, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/prabitarDataContext/Potencial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0f7fc386-a310-4297-b855-4c4ea8c58caa" absoluteBounds="3.015, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

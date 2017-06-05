@@ -137,8 +137,7 @@ namespace getNumbers
 
                                                         if (tele != null)
                                                         {
-                                                            //tele = tele.Replace("+", "0").Replace(" ", "");
-                                                            //var telefone = Convert.ToInt64(tele);
+                                                            // Falta guardar aqui o nome do proprietário
 
                                                             // TODO: Verificar se o anúncio já está na BD
                                                             if (!_agencias.Any(x => x == tele) && potencial.All(x => x.Telefone != tele) && !potencial.All(x => url_imovel != null && x.URL.Contains(url_imovel)))
@@ -397,29 +396,42 @@ namespace getNumbers
 
             var db = new prabitarDataContext();
             var potenciais = db.Potencials;
+            var agencias = db.Agencias;
 
             foreach (var potencial in potenciais)
             {
-                var doc = Webget.Load(potencial.URL.Replace("http:w", "http://w"));
-
-                var node = doc?.DocumentNode.SelectNodes("//*[@id=\"side-content\"]/section/div"); // Vai buscar o tipo de anunciante
-
-                if (node != null)
+                if (potencial.URL.Contains("idealista"))
                 {
-                    var anunciante = node[node.Count - 1].InnerText.ToLower();
+                    var doc = Webget.Load(potencial.URL.Replace("http:w", "http://w"));
 
-                    if (!anunciante.Contains("particular"))
+                    var node = doc?.DocumentNode.SelectNodes("//*[@id=\"side-content\"]/section/div"); // Vai buscar o tipo de anunciante
+
+                    if (node != null)
                     {
-                        var d = MessageBox.Show(potencial.TituloAnuncio + "\n\n" + anunciante + "\n\n" + potencial.URL,
-                            "Deseja eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        var anunciante = node[node.Count - 1].InnerText.ToLower();
 
-                        if(d == DialogResult.Yes || d == DialogResult.OK)
-                            db.Potencials.DeleteOnSubmit(potencial);
+                        if (!anunciante.Contains("particular"))
+                        {
+                            var d = MessageBox.Show(potencial.TituloAnuncio + "\n\n" + anunciante + "\n\n" + potencial.URL,
+                                "Deseja eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                            if (d == DialogResult.Yes || d == DialogResult.OK)
+                                db.Potencials.DeleteOnSubmit(potencial);
+                        }
                     }
                 }
+
+                else if (potencial.URL.Contains("sapo"))
+                {
+                    if(agencias.Any(x => x.Nome.ToLower().Equals(potencial.Nome.ToLower())))
+                        db.Potencials.DeleteOnSubmit(potencial);
+                }
+                
             }
 
             db.SubmitChanges();
+
+            MessageBox.Show("Limpeza Feita!");
         }
 
         // Exportar dados em CSV ou .pdf
@@ -488,8 +500,14 @@ namespace getNumbers
 
         private void button8_Click(object sender, EventArgs e)
         {
-            var mapa = new gmap2();
+            var mapa = new Resultados_Prospecao();
             mapa.Show(this);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var olx = new olx();
+            olx.test();
         }
     }
 }
