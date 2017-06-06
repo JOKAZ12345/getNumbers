@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Net.Http;
-using System.Net;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
-using HtmlDocument = HtmlAgilityPack.HtmlDocument;
+using RestSharp;
 
 namespace getNumbers
 {
@@ -42,15 +31,6 @@ namespace getNumbers
 
             foreach (var casas in casas_nodes)
             {
-                foreach (
-                    var script in casas_nodes.Descendants("script").ToArray())
-                {
-                    var s =
-                        script.InnerText.Replace("\n", "")
-                              .Replace("\t", "")
-                              .Replace("\r", "");
-                }
-
                 var t = casas.SelectNodes("//*[@class=\"line-content\"]");
 
                 var regex = new Regex("<strong(.*?)>(.*?)</strong>");
@@ -59,15 +39,40 @@ namespace getNumbers
 
                 var linq = casas.Attributes["href"]?.Value;
 
-                var imovel = Webget.Load(linq);
+                if (!string.IsNullOrEmpty(linq))
+                {
+                    var imovel = Webget.Load(linq);
 
-                var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"xxxx-large not-arranged\"]")?.InnerText;
-                var contactos = imovel.DocumentNode.SelectNodes("//*[@class=\"offer-sidebar__buttons contact_methods\"]");
+                    var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"xxxx-large not-arranged\"]")?.InnerText;
+                    var contactos = imovel.DocumentNode.SelectNodes("//*[@class=\"offer-sidebar__buttons contact_methods\"]");
 
-                // OLX PROCURAR POR
-                // var phonetoken = 'xxxxxxxx';
-                // Ir buscar o ID do anúncio 'id':'AsC3l'
-                // URL: 
+                    string token = "";
+                    string olx_id = "";
+
+                    foreach (var script in imovel.DocumentNode.Descendants("script"))
+                    {
+                        if (script.InnerText.Contains("phoneToken"))
+                        {
+                            var reg = new Regex("'(.*?)'");
+                            var res = reg.Match(script.InnerText);
+                            token = res.Groups[1].Value;
+
+                            reg = new Regex("-(\\w*?).html");
+                            res = reg.Match(linq);
+                            olx_id = res.Groups[1].Value;
+                        }
+                    }
+
+                    var client = new RestClient("https://www.olx.pt/ajax/misc/contact/phone/AzyQb");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader()
+
+
+                    // OLX PROCURAR POR
+                    // var phonetoken = 'xxxxxxxx';
+                    // Ir buscar o ID do anúncio 'id':'AsC3l'
+                    // URL: 
+                }
             }
 
             /*foreach (var preco in preco_nodes)
