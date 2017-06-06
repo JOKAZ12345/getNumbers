@@ -42,6 +42,17 @@ namespace getNumbers
 
             foreach (var casas in casas_nodes)
             {
+                foreach (
+                    var script in casas_nodes.Descendants("script").ToArray())
+                {
+                    var s =
+                        script.InnerText.Replace("\n", "")
+                              .Replace("\t", "")
+                              .Replace("\r", "");
+                }
+
+                var t = casas.SelectNodes("//*[@class=\"line-content\"]");
+
                 var regex = new Regex("<strong(.*?)>(.*?)</strong>");
                 var m = regex.Match(casas.InnerHtml);
                 var titulo = replaceHTMLChars(m.Groups[2].Value);
@@ -50,7 +61,7 @@ namespace getNumbers
 
                 var imovel = Webget.Load(linq);
 
-                var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"xxxx-large not-arranged\"]").InnerText;
+                var preco = imovel.DocumentNode.SelectSingleNode("//*[@class=\"xxxx-large not-arranged\"]")?.InnerText;
                 var contactos = imovel.DocumentNode.SelectNodes("//*[@class=\"offer-sidebar__buttons contact_methods\"]");
 
                 // OLX PROCURAR POR
