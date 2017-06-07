@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
-using RestSharp;
 
 namespace getNumbers
 {
@@ -63,9 +62,9 @@ namespace getNumbers
                         }
                     }
 
-                    var client = new RestClient("https://www.olx.pt/ajax/misc/contact/phone/AzyQb");
+                    /*var client = new RestClient("https://www.olx.pt/ajax/misc/contact/phone/AzyQb");
                     var request = new RestRequest(Method.POST);
-                    request.AddHeader()
+                    request.AddHeader()*/
 
 
                     // OLX PROCURAR POR
