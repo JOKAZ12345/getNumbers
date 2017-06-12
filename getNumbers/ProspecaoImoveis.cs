@@ -509,5 +509,13 @@ namespace getNumbers
             var olx = new olx();
             olx.test();
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var mapa = new gmap2();
+            mapa.ShowDialog(this);
+            //mapa.addMarkers(new List<Marker>());
+            //mapa.Refresh();
+        }
     }
 }

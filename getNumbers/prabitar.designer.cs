@@ -3891,6 +3891,8 @@ namespace getNumbers
 		
 		private string _Coordenadas;
 		
+		private string _Angariador;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3911,6 +3913,8 @@ namespace getNumbers
     partial void OnActivoChanged();
     partial void OnCoordenadasChanging(string value);
     partial void OnCoordenadasChanged();
+    partial void OnAngariadorChanging(string value);
+    partial void OnAngariadorChanged();
     #endregion
 		
 		public Potencial()
@@ -4074,6 +4078,26 @@ namespace getNumbers
 					this._Coordenadas = value;
 					this.SendPropertyChanged("Coordenadas");
 					this.OnCoordenadasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Angariador", DbType="VarChar(150)")]
+		public string Angariador
+		{
+			get
+			{
+				return this._Angariador;
+			}
+			set
+			{
+				if ((this._Angariador != value))
+				{
+					this.OnAngariadorChanging(value);
+					this.SendPropertyChanging();
+					this._Angariador = value;
+					this.SendPropertyChanged("Angariador");
+					this.OnAngariadorChanged();
 				}
 			}
 		}

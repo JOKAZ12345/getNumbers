@@ -180,6 +180,7 @@
       <Column Name="Preco" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Activo" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Coordenadas" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
+      <Column Name="Angariador" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

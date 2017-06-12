@@ -32,6 +32,8 @@ namespace getNumbers
             gmap.SetPositionByKeywords("Figueira da Foz, Portugal");
             gmap.ShowCenter = false;
             gmap.DragButton = MouseButtons.Left;
+
+            addMarkers(new List<Marker>());
         }
 
         private void addPonto(double lat, double lon, string desc, GMapOverlay markers, string url, string data)
@@ -87,6 +89,33 @@ namespace getNumbers
         {
             MessageBox.Show($@"Marker {((GMapMarker)sender).Tag} was clicked.");
             System.Diagnostics.Process.Start((string) ((GMapMarker) sender).Tag);
+        }
+
+        public void addMarkersIdealista()
+        {
+            var markers = new GMapOverlay("markers");
+
+            var db = new prabitarDataContext();
+
+            foreach (var imovel in db.Potencials)
+            {
+                var x = new PointLatLng();
+                var res = gmap.GetPositionByKeywords(imovel.TituloAnuncio, out x);
+
+                if (res == GeoCoderStatusCode.G_GEO_SUCCESS)
+                {   //TODO: ADD DATA DO OUTRO ANUNCIO
+                    var gmarker = new GMarkerGoogle(new PointLatLng(x.Lat, x.Lng), GMarkerGoogleType.red_pushpin)
+                    {
+                        ToolTipText = imovel.TituloAnuncio,
+                        ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                        Tag = imovel.Preco
+                    };
+
+                    markers.Markers.Add(gmarker);
+                }
+            }
+
+            gmap.Overlays.Add(markers);
         }
 
         public void addMarkersPrabitar()

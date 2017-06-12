@@ -291,7 +291,7 @@ namespace getNumbers {
             
             private global::System.Data.DataColumn columnPreco;
             
-            private global::System.Data.DataColumn columnActivo;
+            private global::System.Data.DataColumn columnAngariador;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -376,9 +376,9 @@ namespace getNumbers {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ActivoColumn {
+            public global::System.Data.DataColumn AngariadorColumn {
                 get {
-                    return this.columnActivo;
+                    return this.columnAngariador;
                 }
             }
             
@@ -419,7 +419,7 @@ namespace getNumbers {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PotencialRow AddPotencialRow(string Telefone, string Nome, string TituloAnuncio, string URL, decimal Preco, int Activo) {
+            public PotencialRow AddPotencialRow(string Telefone, string Nome, string TituloAnuncio, string URL, decimal Preco, string Angariador) {
                 PotencialRow rowPotencialRow = ((PotencialRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -428,7 +428,7 @@ namespace getNumbers {
                         TituloAnuncio,
                         URL,
                         Preco,
-                        Activo};
+                        Angariador};
                 rowPotencialRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPotencialRow);
                 return rowPotencialRow;
@@ -464,7 +464,7 @@ namespace getNumbers {
                 this.columnTituloAnuncio = base.Columns["TituloAnuncio"];
                 this.columnURL = base.Columns["URL"];
                 this.columnPreco = base.Columns["Preco"];
-                this.columnActivo = base.Columns["Activo"];
+                this.columnAngariador = base.Columns["Angariador"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -482,8 +482,8 @@ namespace getNumbers {
                 base.Columns.Add(this.columnURL);
                 this.columnPreco = new global::System.Data.DataColumn("Preco", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreco);
-                this.columnActivo = new global::System.Data.DataColumn("Activo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnActivo);
+                this.columnAngariador = new global::System.Data.DataColumn("Angariador", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAngariador);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCandidato_ID}, true));
                 this.columnCandidato_ID.AutoIncrement = true;
@@ -496,6 +496,7 @@ namespace getNumbers {
                 this.columnNome.MaxLength = 200;
                 this.columnTituloAnuncio.MaxLength = 250;
                 this.columnURL.MaxLength = 200;
+                this.columnAngariador.MaxLength = 150;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -729,17 +730,17 @@ namespace getNumbers {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Activo {
+            public string Angariador {
                 get {
                     try {
-                        return ((int)(this[this.tablePotencial.ActivoColumn]));
+                        return ((string)(this[this.tablePotencial.AngariadorColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Activo\' in table \'Potencial\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Angariador\' in table \'Potencial\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePotencial.ActivoColumn] = value;
+                    this[this.tablePotencial.AngariadorColumn] = value;
                 }
             }
             
@@ -805,14 +806,14 @@ namespace getNumbers {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsActivoNull() {
-                return this.IsNull(this.tablePotencial.ActivoColumn);
+            public bool IsAngariadorNull() {
+                return this.IsNull(this.tablePotencial.AngariadorColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetActivoNull() {
-                this[this.tablePotencial.ActivoColumn] = global::System.Convert.DBNull;
+            public void SetAngariadorNull() {
+                this[this.tablePotencial.AngariadorColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -981,11 +982,11 @@ namespace getNumbers.prabitarDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("TituloAnuncio", "TituloAnuncio");
             tableMapping.ColumnMappings.Add("URL", "URL");
             tableMapping.ColumnMappings.Add("Preco", "Preco");
-            tableMapping.ColumnMappings.Add("Activo", "Activo");
+            tableMapping.ColumnMappings.Add("Angariador", "Angariador");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Potencial] WHERE (([Candidato_ID] = @Original_Candidato_ID) AND ((@IsNull_Telefone = 1 AND [Telefone] IS NULL) OR ([Telefone] = @Original_Telefone)) AND ((@IsNull_Nome = 1 AND [Nome] IS NULL) OR ([Nome] = @Original_Nome)) AND ((@IsNull_TituloAnuncio = 1 AND [TituloAnuncio] IS NULL) OR ([TituloAnuncio] = @Original_TituloAnuncio)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_Preco = 1 AND [Preco] IS NULL) OR ([Preco] = @Original_Preco)) AND ((@IsNull_Activo = 1 AND [Activo] IS NULL) OR ([Activo] = @Original_Activo)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Potencial] WHERE (([Candidato_ID] = @Original_Candidato_ID) AND ((@IsNull_Telefone = 1 AND [Telefone] IS NULL) OR ([Telefone] = @Original_Telefone)) AND ((@IsNull_Nome = 1 AND [Nome] IS NULL) OR ([Nome] = @Original_Nome)) AND ((@IsNull_TituloAnuncio = 1 AND [TituloAnuncio] IS NULL) OR ([TituloAnuncio] = @Original_TituloAnuncio)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_Preco = 1 AND [Preco] IS NULL) OR ([Preco] = @Original_Preco)) AND ((@IsNull_Angariador = 1 AND [Angariador] IS NULL) OR ([Angariador] = @Original_Angariador)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Candidato_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Candidato_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Telefone", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -998,30 +999,30 @@ namespace getNumbers.prabitarDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Preco", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Preco", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Preco", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Preco", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Activo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Activo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Angariador", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Angariador", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Angariador", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Angariador", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Potencial] ([Telefone], [Nome], [TituloAnuncio], [URL], [Preco], [Activo]) VALUES (@Telefone, @Nome, @TituloAnuncio, @URL, @Preco, @Activo);
-SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Potencial WHERE (Candidato_ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Potencial] ([Telefone], [Nome], [TituloAnuncio], [URL], [Preco], [Angariador]) VALUES (@Telefone, @Nome, @TituloAnuncio, @URL, @Preco, @Angariador);
+SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Angariador FROM Potencial WHERE (Candidato_ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Telefone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TituloAnuncio", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TituloAnuncio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Preco", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Preco", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Angariador", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Angariador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Potencial] SET [Telefone] = @Telefone, [Nome] = @Nome, [TituloAnuncio] = @TituloAnuncio, [URL] = @URL, [Preco] = @Preco, [Activo] = @Activo WHERE (([Candidato_ID] = @Original_Candidato_ID) AND ((@IsNull_Telefone = 1 AND [Telefone] IS NULL) OR ([Telefone] = @Original_Telefone)) AND ((@IsNull_Nome = 1 AND [Nome] IS NULL) OR ([Nome] = @Original_Nome)) AND ((@IsNull_TituloAnuncio = 1 AND [TituloAnuncio] IS NULL) OR ([TituloAnuncio] = @Original_TituloAnuncio)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_Preco = 1 AND [Preco] IS NULL) OR ([Preco] = @Original_Preco)) AND ((@IsNull_Activo = 1 AND [Activo] IS NULL) OR ([Activo] = @Original_Activo)));
-SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Potencial WHERE (Candidato_ID = @Candidato_ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Potencial] SET [Telefone] = @Telefone, [Nome] = @Nome, [TituloAnuncio] = @TituloAnuncio, [URL] = @URL, [Preco] = @Preco, [Angariador] = @Angariador WHERE (([Candidato_ID] = @Original_Candidato_ID) AND ((@IsNull_Telefone = 1 AND [Telefone] IS NULL) OR ([Telefone] = @Original_Telefone)) AND ((@IsNull_Nome = 1 AND [Nome] IS NULL) OR ([Nome] = @Original_Nome)) AND ((@IsNull_TituloAnuncio = 1 AND [TituloAnuncio] IS NULL) OR ([TituloAnuncio] = @Original_TituloAnuncio)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_Preco = 1 AND [Preco] IS NULL) OR ([Preco] = @Original_Preco)) AND ((@IsNull_Angariador = 1 AND [Angariador] IS NULL) OR ([Angariador] = @Original_Angariador)));
+SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Angariador FROM Potencial WHERE (Candidato_ID = @Candidato_ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Telefone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nome", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TituloAnuncio", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TituloAnuncio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Preco", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Preco", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Activo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Angariador", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Angariador", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Candidato_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Candidato_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Telefone", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Telefone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Telefone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1033,8 +1034,8 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Preco", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Preco", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Preco", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Preco", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Activo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Activo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Activo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Angariador", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Angariador", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Angariador", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Angariador", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Candidato_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Candidato_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -1051,8 +1052,8 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM dbo.P" +
-                "otencial";
+            this._commandCollection[0].CommandText = "SELECT        Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Angariador" +
+                "\r\nFROM            Potencial";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1113,7 +1114,7 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Candidato_ID, string Original_Telefone, string Original_Nome, string Original_TituloAnuncio, string Original_URL, global::System.Nullable<decimal> Original_Preco, global::System.Nullable<int> Original_Activo) {
+        public virtual int Delete(int Original_Candidato_ID, string Original_Telefone, string Original_Nome, string Original_TituloAnuncio, string Original_URL, global::System.Nullable<decimal> Original_Preco, string Original_Angariador) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Candidato_ID));
             if ((Original_Telefone == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -1155,13 +1156,13 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((Original_Activo.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_Activo.Value));
-            }
-            else {
+            if ((Original_Angariador == null)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Angariador));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1183,7 +1184,7 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Telefone, string Nome, string TituloAnuncio, string URL, global::System.Nullable<decimal> Preco, global::System.Nullable<int> Activo) {
+        public virtual int Insert(string Telefone, string Nome, string TituloAnuncio, string URL, global::System.Nullable<decimal> Preco, string Angariador) {
             if ((Telefone == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1214,11 +1215,11 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Activo.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(Activo.Value));
+            if ((Angariador == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Angariador));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1240,7 +1241,7 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Telefone, string Nome, string TituloAnuncio, string URL, global::System.Nullable<decimal> Preco, global::System.Nullable<int> Activo, int Original_Candidato_ID, string Original_Telefone, string Original_Nome, string Original_TituloAnuncio, string Original_URL, global::System.Nullable<decimal> Original_Preco, global::System.Nullable<int> Original_Activo, int Candidato_ID) {
+        public virtual int Update(string Telefone, string Nome, string TituloAnuncio, string URL, global::System.Nullable<decimal> Preco, string Angariador, int Original_Candidato_ID, string Original_Telefone, string Original_Nome, string Original_TituloAnuncio, string Original_URL, global::System.Nullable<decimal> Original_Preco, string Original_Angariador, int Candidato_ID) {
             if ((Telefone == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1271,11 +1272,11 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Activo.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Activo.Value));
+            if ((Angariador == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Angariador));
             }
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Candidato_ID));
             if ((Original_Telefone == null)) {
@@ -1318,13 +1319,13 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((Original_Activo.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_Activo.Value));
-            }
-            else {
+            if ((Original_Angariador == null)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Angariador));
             }
             this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Candidato_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
@@ -1347,8 +1348,8 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Activo FROM Pote
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Telefone, string Nome, string TituloAnuncio, string URL, global::System.Nullable<decimal> Preco, global::System.Nullable<int> Activo, int Original_Candidato_ID, string Original_Telefone, string Original_Nome, string Original_TituloAnuncio, string Original_URL, global::System.Nullable<decimal> Original_Preco, global::System.Nullable<int> Original_Activo) {
-            return this.Update(Telefone, Nome, TituloAnuncio, URL, Preco, Activo, Original_Candidato_ID, Original_Telefone, Original_Nome, Original_TituloAnuncio, Original_URL, Original_Preco, Original_Activo, Original_Candidato_ID);
+        public virtual int Update(string Telefone, string Nome, string TituloAnuncio, string URL, global::System.Nullable<decimal> Preco, string Angariador, int Original_Candidato_ID, string Original_Telefone, string Original_Nome, string Original_TituloAnuncio, string Original_URL, global::System.Nullable<decimal> Original_Preco, string Original_Angariador) {
+            return this.Update(Telefone, Nome, TituloAnuncio, URL, Preco, Angariador, Original_Candidato_ID, Original_Telefone, Original_Nome, Original_TituloAnuncio, Original_URL, Original_Preco, Original_Angariador, Original_Candidato_ID);
         }
     }
     
