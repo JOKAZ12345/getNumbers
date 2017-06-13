@@ -60,6 +60,20 @@ namespace getNumbers
             dataGridView1.BeginEdit(true);
         }
 
+        private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //dataGridView1.Dat
+            var x = dataGridView1.CurrentCell?.Value;
+
+            var col = dataGridView1.CurrentCell?.ColumnIndex;
+            var lin = dataGridView1.CurrentCell?.RowIndex;
+
+            if (lin != null)
+            {
+                var id = dataGridView1["Candidato_ID", (int) lin].Value;
+            }
+        }
+
         private void potencialBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
