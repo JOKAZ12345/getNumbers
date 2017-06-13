@@ -32,13 +32,6 @@ namespace getNumbers
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.candidatoIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tituloAnuncioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.potencialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prabitarDataSet = new getNumbers.prabitarDataSet();
             this.potencialTableAdapter = new getNumbers.prabitarDataSetTableAdapters.PotencialTableAdapter();
@@ -52,6 +45,14 @@ namespace getNumbers
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.candidatoIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tituloAnuncioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.potencialBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet)).BeginInit();
@@ -75,7 +76,8 @@ namespace getNumbers
             this.tituloAnuncioDataGridViewTextBoxColumn,
             this.uRLDataGridViewTextBoxColumn,
             this.precoDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1});
+            this.dataGridViewTextBoxColumn1,
+            this.Descricao});
             this.dataGridView1.DataSource = this.potencialBindingSource;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(2, 0);
@@ -85,57 +87,7 @@ namespace getNumbers
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_DoubleClick);
-            this.dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(this.DataGridView1_CellValueChanged);
-            // 
-            // candidatoIDDataGridViewTextBoxColumn
-            // 
-            this.candidatoIDDataGridViewTextBoxColumn.DataPropertyName = "Candidato_ID";
-            this.candidatoIDDataGridViewTextBoxColumn.HeaderText = "Candidato_ID";
-            this.candidatoIDDataGridViewTextBoxColumn.Name = "candidatoIDDataGridViewTextBoxColumn";
-            this.candidatoIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.candidatoIDDataGridViewTextBoxColumn.Width = 97;
-            // 
-            // telefoneDataGridViewTextBoxColumn
-            // 
-            this.telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
-            this.telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
-            this.telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
-            this.telefoneDataGridViewTextBoxColumn.Width = 74;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // tituloAnuncioDataGridViewTextBoxColumn
-            // 
-            this.tituloAnuncioDataGridViewTextBoxColumn.DataPropertyName = "TituloAnuncio";
-            this.tituloAnuncioDataGridViewTextBoxColumn.HeaderText = "TituloAnuncio";
-            this.tituloAnuncioDataGridViewTextBoxColumn.Name = "tituloAnuncioDataGridViewTextBoxColumn";
-            this.tituloAnuncioDataGridViewTextBoxColumn.Width = 97;
-            // 
-            // uRLDataGridViewTextBoxColumn
-            // 
-            this.uRLDataGridViewTextBoxColumn.DataPropertyName = "URL";
-            this.uRLDataGridViewTextBoxColumn.HeaderText = "URL";
-            this.uRLDataGridViewTextBoxColumn.Name = "uRLDataGridViewTextBoxColumn";
-            this.uRLDataGridViewTextBoxColumn.Width = 54;
-            // 
-            // precoDataGridViewTextBoxColumn
-            // 
-            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
-            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            this.precoDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Angariador";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Angariador";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 83;
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellValueChanged);
             // 
             // potencialBindingSource
             // 
@@ -240,6 +192,63 @@ namespace getNumbers
             this.comboBox1.TabIndex = 10;
             this.comboBox1.ValueMember = "Angariador";
             // 
+            // candidatoIDDataGridViewTextBoxColumn
+            // 
+            this.candidatoIDDataGridViewTextBoxColumn.DataPropertyName = "Candidato_ID";
+            this.candidatoIDDataGridViewTextBoxColumn.HeaderText = "Candidato_ID";
+            this.candidatoIDDataGridViewTextBoxColumn.Name = "candidatoIDDataGridViewTextBoxColumn";
+            this.candidatoIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.candidatoIDDataGridViewTextBoxColumn.Width = 97;
+            // 
+            // telefoneDataGridViewTextBoxColumn
+            // 
+            this.telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
+            this.telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
+            this.telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
+            this.telefoneDataGridViewTextBoxColumn.Width = 74;
+            // 
+            // nomeDataGridViewTextBoxColumn
+            // 
+            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
+            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+            this.nomeDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // tituloAnuncioDataGridViewTextBoxColumn
+            // 
+            this.tituloAnuncioDataGridViewTextBoxColumn.DataPropertyName = "TituloAnuncio";
+            this.tituloAnuncioDataGridViewTextBoxColumn.HeaderText = "TituloAnuncio";
+            this.tituloAnuncioDataGridViewTextBoxColumn.Name = "tituloAnuncioDataGridViewTextBoxColumn";
+            this.tituloAnuncioDataGridViewTextBoxColumn.Width = 97;
+            // 
+            // uRLDataGridViewTextBoxColumn
+            // 
+            this.uRLDataGridViewTextBoxColumn.DataPropertyName = "URL";
+            this.uRLDataGridViewTextBoxColumn.HeaderText = "URL";
+            this.uRLDataGridViewTextBoxColumn.Name = "uRLDataGridViewTextBoxColumn";
+            this.uRLDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // precoDataGridViewTextBoxColumn
+            // 
+            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
+            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
+            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            this.precoDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Angariador";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Angariador";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 83;
+            // 
+            // Descricao
+            // 
+            this.Descricao.DataPropertyName = "Descricao";
+            this.Descricao.HeaderText = "Descricao";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.Width = 80;
+            // 
             // Resultados_Prospecao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,5 +304,6 @@ namespace getNumbers
         private DataGridViewTextBoxColumn uRLDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn Descricao;
     }
 }

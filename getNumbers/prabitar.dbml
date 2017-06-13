@@ -181,6 +181,7 @@
       <Column Name="Activo" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Coordenadas" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
       <Column Name="Angariador" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

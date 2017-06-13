@@ -62,16 +62,39 @@ namespace getNumbers
 
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //dataGridView1.Dat
+            var db = new prabitarDataContext();
+
             var x = dataGridView1.CurrentCell?.Value;
 
-            var col = dataGridView1.CurrentCell?.ColumnIndex;
-            var lin = dataGridView1.CurrentCell?.RowIndex;
+            var cell = dataGridView1.CurrentCell;
 
-            if (lin != null)
+            if(cell!=null && x!=null)
             {
-                var id = dataGridView1["Candidato_ID", (int) lin].Value;
+                var col = cell.ColumnIndex;
+                var lin = cell.RowIndex;
+
+                int id = Convert.ToInt32(dataGridView1.Rows[lin].Cells[0].Value); // id coluna
+
+                string headerColumn = cell.OwningColumn.HeaderText;
+
+                if (headerColumn.Equals("Angariador"))
+                {
+                    var row = db.Potencials.FirstOrDefault(r => r.Candidato_ID == id);
+
+                    if (row != null)
+                        row.Angariador = x.ToString();
+                }
+
+                else if (headerColumn.Equals("Descricao"))
+                {
+                    var row = db.Potencials.FirstOrDefault(r => r.Candidato_ID == id);
+
+                    if (row != null)
+                        row.Descricao = x.ToString();
+                }
             }
+
+            db.SubmitChanges();
         }
 
         private void potencialBindingSource_CurrentChanged(object sender, EventArgs e)
