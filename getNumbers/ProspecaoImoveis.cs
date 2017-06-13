@@ -375,7 +375,10 @@ namespace getNumbers
             {
                 foreach (var tt in contactosAgencias)
                 {
-                    if (t.Telefone == tt.Telefone)
+                    if (t.Telefone != null && tt.Telefone!=null && t.Telefone == tt.Telefone)
+                        db.Potencials.DeleteOnSubmit(t);
+
+                    else if(tt.Nome!=null && t.Nome!=null && tt.Nome.ToLower().Contains(t.Nome.ToLower()))
                         db.Potencials.DeleteOnSubmit(t);
                 }
             }
