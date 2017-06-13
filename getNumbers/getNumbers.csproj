@@ -129,6 +129,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>prabitar.dbml</DependentUpon>
     </Compile>
+    <Compile Include="prabitarDataSet.cs">
+      <DependentUpon>prabitarDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="prabitarDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -492,10 +492,16 @@ namespace getNumbers {
                 this.columnCandidato_ID.AllowDBNull = false;
                 this.columnCandidato_ID.ReadOnly = true;
                 this.columnCandidato_ID.Unique = true;
+                this.columnTelefone.DefaultValue = ((string)(""));
                 this.columnTelefone.MaxLength = 50;
+                this.columnNome.DefaultValue = ((string)("\"\""));
                 this.columnNome.MaxLength = 200;
+                this.columnTituloAnuncio.DefaultValue = ((string)("\"\""));
                 this.columnTituloAnuncio.MaxLength = 250;
+                this.columnURL.DefaultValue = ((string)("\"\""));
                 this.columnURL.MaxLength = 200;
+                this.columnPreco.DefaultValue = ((decimal)(0m));
+                this.columnAngariador.DefaultValue = ((string)(""));
                 this.columnAngariador.MaxLength = 150;
             }
             
@@ -652,11 +658,11 @@ namespace getNumbers {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Telefone {
                 get {
-                    try {
-                        return ((string)(this[this.tablePotencial.TelefoneColumn]));
+                    if (this.IsTelefoneNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Telefone\' in table \'Potencial\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablePotencial.TelefoneColumn]));
                     }
                 }
                 set {
@@ -668,11 +674,11 @@ namespace getNumbers {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Nome {
                 get {
-                    try {
-                        return ((string)(this[this.tablePotencial.NomeColumn]));
+                    if (this.IsNomeNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Nome\' in table \'Potencial\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablePotencial.NomeColumn]));
                     }
                 }
                 set {
@@ -684,11 +690,11 @@ namespace getNumbers {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string TituloAnuncio {
                 get {
-                    try {
-                        return ((string)(this[this.tablePotencial.TituloAnuncioColumn]));
+                    if (this.IsTituloAnuncioNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TituloAnuncio\' in table \'Potencial\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablePotencial.TituloAnuncioColumn]));
                     }
                 }
                 set {
@@ -700,11 +706,11 @@ namespace getNumbers {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string URL {
                 get {
-                    try {
-                        return ((string)(this[this.tablePotencial.URLColumn]));
+                    if (this.IsURLNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'URL\' in table \'Potencial\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablePotencial.URLColumn]));
                     }
                 }
                 set {
@@ -732,11 +738,11 @@ namespace getNumbers {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Angariador {
                 get {
-                    try {
-                        return ((string)(this[this.tablePotencial.AngariadorColumn]));
+                    if (this.IsAngariadorNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Angariador\' in table \'Potencial\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablePotencial.AngariadorColumn]));
                     }
                 }
                 set {

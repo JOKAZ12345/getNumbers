@@ -32,19 +32,26 @@ namespace getNumbers
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Angariador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.potencialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.prabitarDataSet = new getNumbers.prabitarDataSet();
             this.potencialTableAdapter = new getNumbers.prabitarDataSetTableAdapters.PotencialTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.candidatoIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tituloAnuncioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.angariadorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.potencialBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet)).BeginInit();
@@ -62,14 +69,13 @@ namespace getNumbers
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Angariador,
             this.candidatoIDDataGridViewTextBoxColumn,
             this.telefoneDataGridViewTextBoxColumn,
             this.nomeDataGridViewTextBoxColumn,
             this.tituloAnuncioDataGridViewTextBoxColumn,
             this.uRLDataGridViewTextBoxColumn,
             this.precoDataGridViewTextBoxColumn,
-            this.angariadorDataGridViewTextBoxColumn});
+            this.dataGridViewTextBoxColumn1});
             this.dataGridView1.DataSource = this.potencialBindingSource;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(2, 0);
@@ -79,13 +85,6 @@ namespace getNumbers
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_DoubleClick);
-            // 
-            // Angariador
-            // 
-            this.Angariador.DataPropertyName = "Angariador";
-            this.Angariador.HeaderText = "Angariador";
-            this.Angariador.Name = "Angariador";
-            this.Angariador.Width = 83;
             // 
             // potencialBindingSource
             // 
@@ -118,6 +117,77 @@ namespace getNumbers
             this.textBox1.Size = new System.Drawing.Size(125, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 510);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Rua";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(67, 510);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(269, 20);
+            this.textBox2.TabIndex = 4;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(517, 480);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Preco";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(568, 475);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(97, 20);
+            this.textBox3.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(672, 479);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "<=";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(697, 475);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 8;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(494, 510);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Angariador";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.potencialBindingSource, "Angariador", true));
+            this.comboBox1.DataSource = this.potencialBindingSource;
+            this.comboBox1.DisplayMember = "Angariador";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(568, 501);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 10;
+            this.comboBox1.ValueMember = "Angariador";
             // 
             // candidatoIDDataGridViewTextBoxColumn
             // 
@@ -162,18 +232,26 @@ namespace getNumbers
             this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
             this.precoDataGridViewTextBoxColumn.Width = 60;
             // 
-            // angariadorDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn1
             // 
-            this.angariadorDataGridViewTextBoxColumn.DataPropertyName = "Angariador";
-            this.angariadorDataGridViewTextBoxColumn.HeaderText = "Angariador";
-            this.angariadorDataGridViewTextBoxColumn.Name = "angariadorDataGridViewTextBoxColumn";
-            this.angariadorDataGridViewTextBoxColumn.Width = 83;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Angariador";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Angariador";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 83;
             // 
             // Resultados_Prospecao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 558);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
@@ -199,15 +277,23 @@ namespace getNumbers
         private prabitarDataSet prabitarDataSet;
         private System.Windows.Forms.BindingSource potencialBindingSource;
         private prabitarDataSetTableAdapters.PotencialTableAdapter potencialTableAdapter;
-        private DataGridViewTextBoxColumn Angariador;
         private Label label1;
         private TextBox textBox1;
+        private DataGridViewTextBoxColumn angariadorDataGridViewTextBoxColumn;
+        private Label label2;
+        private TextBox textBox2;
+        private Label label3;
+        private TextBox textBox3;
+        private Label label4;
+        private TextBox textBox4;
+        private Label label5;
+        private ComboBox comboBox1;
         private DataGridViewTextBoxColumn candidatoIDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn tituloAnuncioDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn uRLDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn angariadorDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

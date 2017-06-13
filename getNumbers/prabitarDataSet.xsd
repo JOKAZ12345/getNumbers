@@ -104,36 +104,36 @@ SELECT Candidato_ID, Telefone, Nome, TituloAnuncio, URL, Preco, Angariador FROM 
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Candidato_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCandidato_ID" msprop:Generator_ColumnPropNameInRow="Candidato_ID" msprop:Generator_ColumnPropNameInTable="Candidato_IDColumn" msprop:Generator_UserColumnName="Candidato_ID" type="xs:int" />
-              <xs:element name="Telefone" msprop:Generator_ColumnVarNameInTable="columnTelefone" msprop:Generator_ColumnPropNameInRow="Telefone" msprop:Generator_ColumnPropNameInTable="TelefoneColumn" msprop:Generator_UserColumnName="Telefone" minOccurs="0">
+              <xs:element name="Telefone" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Telefone" msprop:Generator_ColumnVarNameInTable="columnTelefone" msprop:Generator_ColumnPropNameInTable="TelefoneColumn" msprop:Generator_UserColumnName="Telefone" default="" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_UserColumnName="Nome" minOccurs="0">
+              <xs:element name="Nome" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_UserColumnName="Nome" default="&quot;&quot;" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TituloAnuncio" msprop:Generator_ColumnVarNameInTable="columnTituloAnuncio" msprop:Generator_ColumnPropNameInRow="TituloAnuncio" msprop:Generator_ColumnPropNameInTable="TituloAnuncioColumn" msprop:Generator_UserColumnName="TituloAnuncio" minOccurs="0">
+              <xs:element name="TituloAnuncio" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TituloAnuncio" msprop:Generator_ColumnVarNameInTable="columnTituloAnuncio" msprop:Generator_ColumnPropNameInTable="TituloAnuncioColumn" msprop:Generator_UserColumnName="TituloAnuncio" default="&quot;&quot;" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="URL" msprop:Generator_ColumnVarNameInTable="columnURL" msprop:Generator_ColumnPropNameInRow="URL" msprop:Generator_ColumnPropNameInTable="URLColumn" msprop:Generator_UserColumnName="URL" minOccurs="0">
+              <xs:element name="URL" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="URL" msprop:Generator_ColumnVarNameInTable="columnURL" msprop:Generator_ColumnPropNameInTable="URLColumn" msprop:Generator_UserColumnName="URL" default="&quot;&quot;" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Preco" msprop:Generator_ColumnVarNameInTable="columnPreco" msprop:Generator_ColumnPropNameInRow="Preco" msprop:Generator_ColumnPropNameInTable="PrecoColumn" msprop:Generator_UserColumnName="Preco" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Angariador" msprop:Generator_ColumnVarNameInTable="columnAngariador" msprop:Generator_ColumnPropNameInRow="Angariador" msprop:Generator_ColumnPropNameInTable="AngariadorColumn" msprop:Generator_UserColumnName="Angariador" minOccurs="0">
+              <xs:element name="Preco" msprop:Generator_ColumnVarNameInTable="columnPreco" msprop:Generator_ColumnPropNameInRow="Preco" msprop:Generator_ColumnPropNameInTable="PrecoColumn" msprop:Generator_UserColumnName="Preco" type="xs:decimal" default="0" minOccurs="0" />
+              <xs:element name="Angariador" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Angariador" msprop:Generator_ColumnVarNameInTable="columnAngariador" msprop:Generator_ColumnPropNameInTable="AngariadorColumn" msprop:Generator_UserColumnName="Angariador" default="" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
