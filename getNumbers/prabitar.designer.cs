@@ -3895,6 +3895,8 @@ namespace getNumbers
 		
 		private string _Descricao;
 		
+		private string _DataAnuncio;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3919,6 +3921,8 @@ namespace getNumbers
     partial void OnAngariadorChanged();
     partial void OnDescricaoChanging(string value);
     partial void OnDescricaoChanged();
+    partial void OnDataAnuncioChanging(string value);
+    partial void OnDataAnuncioChanged();
     #endregion
 		
 		public Potencial()
@@ -4122,6 +4126,26 @@ namespace getNumbers
 					this._Descricao = value;
 					this.SendPropertyChanged("Descricao");
 					this.OnDescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataAnuncio", DbType="VarChar(50)")]
+		public string DataAnuncio
+		{
+			get
+			{
+				return this._DataAnuncio;
+			}
+			set
+			{
+				if ((this._DataAnuncio != value))
+				{
+					this.OnDataAnuncioChanging(value);
+					this.SendPropertyChanging();
+					this._DataAnuncio = value;
+					this.SendPropertyChanged("DataAnuncio");
+					this.OnDataAnuncioChanged();
 				}
 			}
 		}

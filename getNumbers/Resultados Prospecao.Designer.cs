@@ -53,6 +53,7 @@ namespace getNumbers
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataAnuncio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.potencialBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet)).BeginInit();
@@ -77,7 +78,8 @@ namespace getNumbers
             this.uRLDataGridViewTextBoxColumn,
             this.precoDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn1,
-            this.Descricao});
+            this.Descricao,
+            this.DataAnuncio});
             this.dataGridView1.DataSource = this.potencialBindingSource;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(2, 0);
@@ -249,6 +251,14 @@ namespace getNumbers
             this.Descricao.Name = "Descricao";
             this.Descricao.Width = 80;
             // 
+            // DataAnuncio
+            // 
+            this.DataAnuncio.DataPropertyName = "DataAnuncio";
+            this.DataAnuncio.HeaderText = "DataAnuncio";
+            this.DataAnuncio.Name = "DataAnuncio";
+            this.DataAnuncio.ReadOnly = true;
+            this.DataAnuncio.Width = 94;
+            // 
             // Resultados_Prospecao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,5 +315,6 @@ namespace getNumbers
         private DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn Descricao;
+        private DataGridViewTextBoxColumn DataAnuncio;
     }
 }
