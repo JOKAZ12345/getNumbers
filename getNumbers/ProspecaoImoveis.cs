@@ -532,5 +532,12 @@ namespace getNumbers
             var mapa = new gmap2();
             mapa.ShowDialog(this);
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            var remax = new Remax();
+            remax.roubarRemaxSite();
+
+        }
     }
 }

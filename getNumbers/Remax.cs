@@ -13,6 +13,12 @@ using System.Net;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
+using OpenQA.Selenium;
+using OpenQA.Selenium.PhantomJS;
+using OpenQA.Selenium.Remote;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 
 namespace getNumbers
 {
@@ -21,6 +27,49 @@ namespace getNumbers
         //https://casa.sapo.pt/Remax/Figueira-da-Foz/Buarcos/?sa=6&sys=5&or=10
 
         private const string SapoUrl = "http://casa.sapo.pt";
+
+        private string titulo;
+        private string localidade;
+        private string preco;
+        private detalhes info;
+        private class detalhes
+        {
+            private int assoalhadas;
+            private int quartos;
+            private int casas_banho;
+            private double area;
+            private string ce;
+
+            public detalhes(int a, int q, int c, double area, string ce)
+            {
+                this.assoalhadas = a;
+                this.quartos = q;
+                this.casas_banho = c;
+                this.area = area;
+                this.ce = ce;
+            }
+
+            public detalhes(string a, string q, string c, string area, string ce)
+            {
+                if (string.IsNullOrWhiteSpace(a))
+                    a = "0";
+
+                if (string.IsNullOrWhiteSpace(q))
+                    q = "0";
+
+                if (string.IsNullOrWhiteSpace(c))
+                    c = "0";
+
+                this.assoalhadas = Convert.ToInt32(a);
+                this.quartos = Convert.ToInt32(q);
+                this.casas_banho = Convert.ToInt32(c);
+                this.area = Convert.ToDouble(area);
+                this.ce = ce;
+            }
+        }
+
+        private string lat;
+        private string lon;
 
         public Remax()
         {
@@ -40,7 +89,111 @@ namespace getNumbers
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
-            string url = "https://casa.sapo.pt/Remax/Figueira-da-Foz/Buarcos/?sa=6&sys=5&or=10&pn=#";
+            string url = "http://www.remax.pt/PublicListingList.aspx?SearchKey=B8D9444A21C14D8DA4204297A435E0BA#mode=list&tt=261&cr=2&r=61&p=444&c=138233&cur=EUR&la=All&sb=PriceIncreasing&page=v&sc=12&sid=a81a1d1d-ee36-4236-a72e-31343349c574";
+
+            var remaxImoveis = new List<Remax>();
+
+            url = url.Replace("page=v", "page=" + 1);
+
+            PhantomJSOptions options = new PhantomJSOptions();
+            PhantomJSDriverService service = PhantomJSDriverService.CreateDefaultService();
+            service.LoadImages = false;
+
+            var driver = new PhantomJSDriver(service, options);
+
+            driver.Navigate().GoToUrl(url);
+
+            //var imoveis = new System.Collections.ObjectModel.ReadOnlyCollection<IWebElement>(null);
+            List<IWebElement> imoveis = new List<IWebElement>();
+
+            for (int z = 0; z < 3000; z++)
+            {
+                imoveis = driver.FindElementsByClassName("listing-list").ToList();
+
+                if (imoveis.Count != 0)
+                    break;
+            }
+
+            if (imoveis.Count == 0)
+                return;
+
+            double xf = (double)Convert.ToInt32(driver.FindElementByClassName("num-matches").Text.Split(' ')[0]) / 24;
+            int pages = (int)Math.Round(xf, MidpointRounding.AwayFromZero);
+
+            try
+            {
+                for(int i = 0; i < pages; i++)
+                {
+                    if (i != 0)
+                    {
+                        url = url.Replace("page=v", "page=" + i + 1);
+
+                        options = new PhantomJSOptions();
+                        service = PhantomJSDriverService.CreateDefaultService();
+                        service.LoadImages = false;
+
+                        driver = new PhantomJSDriver(service, options);
+
+                        driver.Navigate().GoToUrl(url);
+
+                        //var imoveis = new System.Collections.ObjectModel.ReadOnlyCollection<IWebElement>(null);
+                        imoveis = new List<IWebElement>();
+
+                        for (int z = 0; z < 3000; z++)
+                        {
+                            imoveis = driver.FindElementsByClassName("listing-list").ToList();
+
+                            if (imoveis.Count != 0)
+                                break;
+                        }
+
+                        if (imoveis == null)
+                            break;
+                    }                            
+
+                    foreach (var imovel in imoveis)
+                    {
+                        try
+                        {
+                            var titulo = imovel.FindElement(By.ClassName("listinglist-proptype")).Text.Split('-')[0];
+                            titulo = titulo.Remove(titulo.Length - 1, 1);
+                            var morada = imovel.FindElement(By.ClassName("proplist-address")).Text;
+                            var preco = imovel.FindElement(By.ClassName("proplist-price-container")).Text;
+                            var info = imovel.FindElements(By.ClassName("gallery-attr-item-value"));
+
+                            var x = new detalhes(info[0].Text, info[1].Text, info[2].Text, info[3].Text, info[4].Text);
+
+                            var gps = imovel.FindElement(By.ClassName("ll-map-invoker"));
+
+                            var lat = gps.GetAttribute("data-lat");
+                            var lon = gps.GetAttribute("data-lng");
+
+                            remaxImoveis.Add(new Remax
+                            {
+                                titulo = titulo,
+                                localidade = morada,
+                                preco = preco,
+                                lat = lat,
+                                lon = lon,
+                                info = new detalhes(info[0].Text, info[1].Text, info[2].Text, info[3].Text, info[4].Text)
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+
+                            //throw;
+                        }
+                    }
+
+                    driver.Quit();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
         }
 
         public void roubar()
