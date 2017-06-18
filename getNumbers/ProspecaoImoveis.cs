@@ -520,5 +520,17 @@ namespace getNumbers
             //mapa.addMarkers(new List<Marker>());
             //mapa.Refresh();
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var remax = new Remax();
+            remax.roubar();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            var mapa = new gmap2();
+            mapa.ShowDialog(this);
+        }
     }
 }

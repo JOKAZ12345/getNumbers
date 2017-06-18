@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
@@ -46,8 +47,11 @@
             this.venderRBTN = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button12 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -75,6 +79,16 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Prospecção Imóveis";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(188, 213);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(80, 26);
+            this.button10.TabIndex = 18;
+            this.button10.Text = "&Mapa";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button9
             // 
@@ -254,21 +268,43 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button10
+            // button11
             // 
-            this.button10.Location = new System.Drawing.Point(188, 213);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(80, 26);
-            this.button10.TabIndex = 18;
-            this.button10.Text = "&Mapa";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button11.Location = new System.Drawing.Point(6, 54);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 11;
+            this.button11.Text = "&Procurar";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button12);
+            this.groupBox1.Controls.Add(this.button11);
+            this.groupBox1.Location = new System.Drawing.Point(505, 114);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "ROUBAR REMAX";
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(101, 54);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 12;
+            this.button12.Text = "&Mapa";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // ProspecaoImoveis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 573);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.groupBox2);
             this.Name = "ProspecaoImoveis";
@@ -278,6 +314,7 @@
             this.TopMost = true;
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -303,5 +340,8 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button12;
     }
 }

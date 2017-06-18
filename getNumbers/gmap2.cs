@@ -28,7 +28,7 @@ namespace getNumbers
         {
             gmap.MapProvider = GoogleMapProvider.Instance;
             gmap.IgnoreMarkerOnMouseWheel = true;
-            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            //GMaps.Instance.Mode = AccessMode.ServerOnly;
             gmap.SetPositionByKeywords("Figueira da Foz, Portugal");
             gmap.ShowCenter = false;
             gmap.DragButton = MouseButtons.Left;
@@ -151,7 +151,13 @@ namespace getNumbers
 
             var db = new prabitarDataContext();
 
-            foreach (var item in db.Potencials)
+            foreach(var item in db.Potencials.Where(x => x.Nome.Contains("MAX")))
+            {
+                var coordenadas = item.Coordenadas.Split(' ');
+                addPonto(Convert.ToDouble(coordenadas[1]), Convert.ToDouble(coordenadas[0].Substring(0, coordenadas[0].Length - 1)), item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
+            }
+
+            /*foreach (var item in db.Potencials)
             {
                 var x = new PointLatLng();
                 var res = gmap.GetPositionByKeywords(item.TituloAnuncio, out x);
@@ -159,17 +165,18 @@ namespace getNumbers
                 if (res == GeoCoderStatusCode.G_GEO_SUCCESS)
                 {   //TODO: ADD DATA DO OUTRO ANUNCIO
                     addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Telefone + "\n" + item.Preco, markers, item.URL, null);
+                    //addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
                 }
             }
 
             foreach (var mark in markersList)
             {
                 addPonto(mark.Latitude, mark.Longitude, mark.tooltiptext, markers, mark.url, mark.data);
-            }
+            }*/
+
 
             gmap.Overlays.Add(markers);
-
-            addMarkersPrabitar();
+            //addMarkersPrabitar();
         }
 
         private void gmap_Load(object sender, EventArgs e)
