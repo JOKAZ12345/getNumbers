@@ -182,6 +182,7 @@
       <Column Name="Coordenadas" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
       <Column Name="Angariador" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
       <Column Name="Descricao" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
+      <Column Name="DataAnuncio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
