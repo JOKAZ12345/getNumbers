@@ -127,12 +127,22 @@
     <Compile Include="gmap2.Designer.cs">
       <DependentUpon>gmap2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Imoveis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imoveis.Designer.cs">
+      <DependentUpon>Imoveis.cs</DependentUpon>
+    </Compile>
     <Compile Include="olx.cs" />
     <Compile Include="Pessoas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pessoas.Designer.cs">
       <DependentUpon>Pessoas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prabitar.cs">
+      <DependentUpon>prabitar.dbml</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="prabitar.designer.cs">
       <AutoGen>True</AutoGen>
@@ -168,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="gmap2.resx">
       <DependentUpon>gmap2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imoveis.resx">
+      <DependentUpon>Imoveis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProspecaoImoveis.resx">
       <DependentUpon>ProspecaoImoveis.cs</DependentUpon>
