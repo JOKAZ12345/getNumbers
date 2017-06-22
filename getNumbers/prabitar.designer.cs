@@ -78,6 +78,9 @@ namespace getNumbers
     partial void InsertPotencial(Potencial instance);
     partial void UpdatePotencial(Potencial instance);
     partial void DeletePotencial(Potencial instance);
+    partial void InsertPendente(Pendente instance);
+    partial void UpdatePendente(Pendente instance);
+    partial void DeletePendente(Pendente instance);
     #endregion
 		
 		public prabitarDataContext() : 
@@ -235,6 +238,14 @@ namespace getNumbers
 			get
 			{
 				return this.GetTable<Potencial>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Pendente> Pendentes
+		{
+			get
+			{
+				return this.GetTable<Pendente>();
 			}
 		}
 	}
@@ -4146,6 +4157,380 @@ namespace getNumbers
 					this._DataAnuncio = value;
 					this.SendPropertyChanged("DataAnuncio");
 					this.OnDataAnuncioChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pendentes")]
+	public partial class Pendente : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Imovel_ID;
+		
+		private string _Localizacao;
+		
+		private string _Concelho;
+		
+		private string _Freguesia;
+		
+		private System.Nullable<int> _CodigoPostal;
+		
+		private string _Tipo;
+		
+		private string _Caracteristicas;
+		
+		private System.Nullable<System.DateTime> _DataConstrucao;
+		
+		private string _CE;
+		
+		private System.Nullable<int> _Vendedor_ID;
+		
+		private System.Nullable<int> _Comprador_ID;
+		
+		private System.Nullable<int> _Arrendatario_ID;
+		
+		private System.Nullable<int> _Preco_ID;
+		
+		private string _Nota;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnImovel_IDChanging(int value);
+    partial void OnImovel_IDChanged();
+    partial void OnLocalizacaoChanging(string value);
+    partial void OnLocalizacaoChanged();
+    partial void OnConcelhoChanging(string value);
+    partial void OnConcelhoChanged();
+    partial void OnFreguesiaChanging(string value);
+    partial void OnFreguesiaChanged();
+    partial void OnCodigoPostalChanging(System.Nullable<int> value);
+    partial void OnCodigoPostalChanged();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
+    partial void OnCaracteristicasChanging(string value);
+    partial void OnCaracteristicasChanged();
+    partial void OnDataConstrucaoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataConstrucaoChanged();
+    partial void OnCEChanging(string value);
+    partial void OnCEChanged();
+    partial void OnVendedor_IDChanging(System.Nullable<int> value);
+    partial void OnVendedor_IDChanged();
+    partial void OnComprador_IDChanging(System.Nullable<int> value);
+    partial void OnComprador_IDChanged();
+    partial void OnArrendatario_IDChanging(System.Nullable<int> value);
+    partial void OnArrendatario_IDChanged();
+    partial void OnPreco_IDChanging(System.Nullable<int> value);
+    partial void OnPreco_IDChanged();
+    partial void OnNotaChanging(string value);
+    partial void OnNotaChanged();
+    #endregion
+		
+		public Pendente()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imovel_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Imovel_ID
+		{
+			get
+			{
+				return this._Imovel_ID;
+			}
+			set
+			{
+				if ((this._Imovel_ID != value))
+				{
+					this.OnImovel_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Imovel_ID = value;
+					this.SendPropertyChanged("Imovel_ID");
+					this.OnImovel_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Localizacao", DbType="VarChar(400)")]
+		public string Localizacao
+		{
+			get
+			{
+				return this._Localizacao;
+			}
+			set
+			{
+				if ((this._Localizacao != value))
+				{
+					this.OnLocalizacaoChanging(value);
+					this.SendPropertyChanging();
+					this._Localizacao = value;
+					this.SendPropertyChanged("Localizacao");
+					this.OnLocalizacaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Concelho", DbType="VarChar(100)")]
+		public string Concelho
+		{
+			get
+			{
+				return this._Concelho;
+			}
+			set
+			{
+				if ((this._Concelho != value))
+				{
+					this.OnConcelhoChanging(value);
+					this.SendPropertyChanging();
+					this._Concelho = value;
+					this.SendPropertyChanged("Concelho");
+					this.OnConcelhoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Freguesia", DbType="VarChar(100)")]
+		public string Freguesia
+		{
+			get
+			{
+				return this._Freguesia;
+			}
+			set
+			{
+				if ((this._Freguesia != value))
+				{
+					this.OnFreguesiaChanging(value);
+					this.SendPropertyChanging();
+					this._Freguesia = value;
+					this.SendPropertyChanged("Freguesia");
+					this.OnFreguesiaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodigoPostal", DbType="Int")]
+		public System.Nullable<int> CodigoPostal
+		{
+			get
+			{
+				return this._CodigoPostal;
+			}
+			set
+			{
+				if ((this._CodigoPostal != value))
+				{
+					this.OnCodigoPostalChanging(value);
+					this.SendPropertyChanging();
+					this._CodigoPostal = value;
+					this.SendPropertyChanged("CodigoPostal");
+					this.OnCodigoPostalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(100)")]
+		public string Tipo
+		{
+			get
+			{
+				return this._Tipo;
+			}
+			set
+			{
+				if ((this._Tipo != value))
+				{
+					this.OnTipoChanging(value);
+					this.SendPropertyChanging();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caracteristicas", DbType="VarChar(500)")]
+		public string Caracteristicas
+		{
+			get
+			{
+				return this._Caracteristicas;
+			}
+			set
+			{
+				if ((this._Caracteristicas != value))
+				{
+					this.OnCaracteristicasChanging(value);
+					this.SendPropertyChanging();
+					this._Caracteristicas = value;
+					this.SendPropertyChanged("Caracteristicas");
+					this.OnCaracteristicasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataConstrucao", DbType="Date")]
+		public System.Nullable<System.DateTime> DataConstrucao
+		{
+			get
+			{
+				return this._DataConstrucao;
+			}
+			set
+			{
+				if ((this._DataConstrucao != value))
+				{
+					this.OnDataConstrucaoChanging(value);
+					this.SendPropertyChanging();
+					this._DataConstrucao = value;
+					this.SendPropertyChanged("DataConstrucao");
+					this.OnDataConstrucaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CE", DbType="VarChar(40)")]
+		public string CE
+		{
+			get
+			{
+				return this._CE;
+			}
+			set
+			{
+				if ((this._CE != value))
+				{
+					this.OnCEChanging(value);
+					this.SendPropertyChanging();
+					this._CE = value;
+					this.SendPropertyChanged("CE");
+					this.OnCEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vendedor_ID", DbType="Int")]
+		public System.Nullable<int> Vendedor_ID
+		{
+			get
+			{
+				return this._Vendedor_ID;
+			}
+			set
+			{
+				if ((this._Vendedor_ID != value))
+				{
+					this.OnVendedor_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Vendedor_ID = value;
+					this.SendPropertyChanged("Vendedor_ID");
+					this.OnVendedor_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comprador_ID", DbType="Int")]
+		public System.Nullable<int> Comprador_ID
+		{
+			get
+			{
+				return this._Comprador_ID;
+			}
+			set
+			{
+				if ((this._Comprador_ID != value))
+				{
+					this.OnComprador_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Comprador_ID = value;
+					this.SendPropertyChanged("Comprador_ID");
+					this.OnComprador_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Arrendatario_ID", DbType="Int")]
+		public System.Nullable<int> Arrendatario_ID
+		{
+			get
+			{
+				return this._Arrendatario_ID;
+			}
+			set
+			{
+				if ((this._Arrendatario_ID != value))
+				{
+					this.OnArrendatario_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Arrendatario_ID = value;
+					this.SendPropertyChanged("Arrendatario_ID");
+					this.OnArrendatario_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preco_ID", DbType="Int")]
+		public System.Nullable<int> Preco_ID
+		{
+			get
+			{
+				return this._Preco_ID;
+			}
+			set
+			{
+				if ((this._Preco_ID != value))
+				{
+					this.OnPreco_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Preco_ID = value;
+					this.SendPropertyChanged("Preco_ID");
+					this.OnPreco_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nota", DbType="VarChar(450)")]
+		public string Nota
+		{
+			get
+			{
+				return this._Nota;
+			}
+			set
+			{
+				if ((this._Nota != value))
+				{
+					this.OnNotaChanging(value);
+					this.SendPropertyChanging();
+					this._Nota = value;
+					this.SendPropertyChanged("Nota");
+					this.OnNotaChanged();
 				}
 			}
 		}

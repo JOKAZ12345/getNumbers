@@ -151,13 +151,13 @@ namespace getNumbers
 
             var db = new prabitarDataContext();
 
-            foreach(var item in db.Potencials.Where(x => x.Nome.Contains("MAX")))
+            /*foreach(var item in db.Potencials.Where(x => x.Nome.Contains("MAX")))
             {
                 var coordenadas = item.Coordenadas.Split(' ');
                 addPonto(Convert.ToDouble(coordenadas[1]), Convert.ToDouble(coordenadas[0].Substring(0, coordenadas[0].Length - 1)), item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
-            }
+            }*/
 
-            /*foreach (var item in db.Potencials)
+            foreach (var item in db.Potencials)
             {
                 var x = new PointLatLng();
                 var res = gmap.GetPositionByKeywords(item.TituloAnuncio, out x);
@@ -172,7 +172,7 @@ namespace getNumbers
             foreach (var mark in markersList)
             {
                 addPonto(mark.Latitude, mark.Longitude, mark.tooltiptext, markers, mark.url, mark.data);
-            }*/
+            }
 
 
             gmap.Overlays.Add(markers);

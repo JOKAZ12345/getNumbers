@@ -14,7 +14,7 @@ namespace getNumbers
     {
         public Prabitar()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

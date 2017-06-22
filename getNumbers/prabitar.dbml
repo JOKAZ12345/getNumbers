@@ -185,4 +185,22 @@
       <Column Name="DataAnuncio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Pendentes" Member="Pendentes">
+    <Type Name="Pendente">
+      <Column Name="Imovel_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Localizacao" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="Concelho" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Freguesia" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CodigoPostal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Caracteristicas" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="DataConstrucao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CE" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Vendedor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comprador_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Arrendatario_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Preco_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nota" Type="System.String" DbType="VarChar(450)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

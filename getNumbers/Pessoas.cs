@@ -44,10 +44,11 @@ namespace getNumbers
                 morada = textBox9.Text.ToLower();
 
             //TODO: Remover do nome os "do", "de", "da"
-            var pessoa = pessoas.FirstOrDefault(x => x.Telefone == telefone ||
-                                                           x.BI == BI || x.Nome.ToLower().Equals(nome) ||
-                                                           x.Email.ToLower().Equals(email) ||
-                                                           x.Morada.ToLower().Equals(morada));
+
+            Pessoa pessoa = null;
+
+            if (telefone != 0 || BI != 0)
+                pessoa = pessoas.FirstOrDefault(x => x.Telefone == telefone && x.BI == BI);
 
             if (pessoa != null)
             {
@@ -63,14 +64,26 @@ namespace getNumbers
 
             else
             {
-                var Pessoa = new Pessoa();
+                var Pessoa = new Pessoa
+                {
+                    Nome = textBox5.Text,
+                    BI = string.IsNullOrWhiteSpace(textBox6.Text) ? 0 : Convert.ToInt32(textBox6.Text),
+                    Telefone = string.IsNullOrWhiteSpace(textBox7.Text) ? 0 : Convert.ToInt32(textBox7.Text),
+                    Email = textBox8.Text,
+                    Morada = textBox9.Text,
+                    NIF = string.IsNullOrWhiteSpace(textBox11.Text) ? 0 : Convert.ToInt32(textBox11.Text)
+                };
 
-                Pessoa.Nome = textBox5.Text;
-                Pessoa.BI = Convert.ToInt32(textBox6.Text);
-                Pessoa.Telefone = Convert.ToInt32(textBox7.Text);
+                if(!pessoas.Any(x => x.BI == Pessoa.BI))
+                    pessoas.InsertOnSubmit(Pessoa);
+
+
+                //Pessoa.DataNascimento = textBox10.Text;
 
             }
-                MessageBox.Show("Não existe!");
+
+            db.SubmitChanges();
+            db.Dispose();
         }
 
         private void button9_Click(object sender, EventArgs e)

@@ -221,9 +221,8 @@ namespace getNumbers
 
         private void opçõesAvançadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*var imoveisForm = new Imo();
-
-            imoveisForm.Sho*/
+            var imoveisForm = new Imoveis();
+            imoveisForm.ShowDialog();
         }
     }
 }
