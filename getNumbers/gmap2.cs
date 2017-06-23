@@ -157,7 +157,7 @@ namespace getNumbers
                 addPonto(Convert.ToDouble(coordenadas[1]), Convert.ToDouble(coordenadas[0].Substring(0, coordenadas[0].Length - 1)), item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
             }*/
 
-            foreach (var item in db.Potencials)
+            foreach (var item in db.Potencials.Where(x => x.URL.Contains("idealista")))
             {
                 var x = new PointLatLng();
                 var res = gmap.GetPositionByKeywords(item.TituloAnuncio, out x);
