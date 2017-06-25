@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.MapProviders;
+using Geocoding;
+using Geocoding.Microsoft;
+using Geocoding.MapQuest;
+using Geocoding.Google;
 
 namespace getNumbers
 {
@@ -40,6 +44,14 @@ namespace getNumbers
             return str;
         }
 
+        private double getFloatFromString(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return 0.0;
+
+            return Convert.ToDouble(str);
+        }
+
         private DateTime getDateFromString(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
@@ -48,7 +60,7 @@ namespace getNumbers
             return DateTime.Parse(str, new System.Globalization.CultureInfo("pt-PT", true), System.Globalization.DateTimeStyles.AssumeLocal).Date;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
             var db = new prabitarDataContext();
             var pendentes = db.Pendentes;
@@ -64,13 +76,15 @@ namespace getNumbers
             var caracterisitcas = getValueFromString(textBox6.Text);
             var ce = getValueFromString(textBox7.Text);
             var dataAngariacao = getDateFromString(textBox8.Text);
-            var preco = textBox17.Text;
+            var preco = getIntegerFromString(textBox17.Text);
+            var comissao = getIntegerFromString(textBox18.Text);
+            var area = getFloatFromString(textBox19.Text);
 
             var notas = textBox16.Text;
 
             Pessoa proprietario = null;/* = pessoas.First(x => x.BI == getIntegerFromString(textBox12.Text));*/
 
-            foreach(var p in pessoas)
+            foreach (var p in pessoas)
             {
                 var bi = getIntegerFromString(textBox12.Text);
 
@@ -81,7 +95,7 @@ namespace getNumbers
                 {
                     proprietario = p;
                     break;
-                }    
+                }
             }
 
             if (proprietario != null)
@@ -119,24 +133,60 @@ namespace getNumbers
                 db.SubmitChanges();
             }
 
-            var gmap = new gmap2();
-            var coordenadas = gmap.getCoordenadas(morada + " " + concelho + " " + freguesia + " " + cp);
+            /*var coordenadas = await BingGeo(morada);
 
-            var imovel = new Pendente()
+            string rua = morada;
+
+            try
             {
-                Localizacao = morada,
-                Concelho = concelho,
-                Freguesia = freguesia,
-                CodigoPostal = cp,
-                Tipo = tipo,
-                Caracteristicas = caracterisitcas,
-                CE = ce,
-                DataAngariacao = dataAngariacao,
-                Vendedor_ID = proprietario.Pessoa_ID,
-                Angariador = comboBox1.Text,
-                Nota = notas,
-                Coordenadas = coordenadas
-            };
+                rua = morada.Substring(0, morada.IndexOf(" ", morada.IndexOf(" ", morada.IndexOf("nº")) + 1));
+            }
+            catch (Exception ex)
+            {
+
+            }*/
+
+            Pendente imovel = null;
+
+            if (radioButton2.Checked)
+            {
+                imovel = new Pendente()
+                {
+                    Localizacao = morada,
+                    Concelho = concelho,
+                    Freguesia = freguesia,
+                    CodigoPostal = cp,
+                    Tipo = tipo,
+                    Caracteristicas = caracterisitcas,
+                    CE = ce,
+                    DataAngariacao = dataAngariacao,
+                    Vendedor_ID = proprietario.Pessoa_ID,
+                    Angariador = comboBox1.Text,
+                    Nota = notas,
+                    Coordenadas = await BingGeo(morada + " " + concelho),
+                    Area = area
+                };
+            }
+
+            else
+            {
+                imovel = new Pendente()
+                {
+                    Localizacao = morada,
+                    Concelho = concelho,
+                    Freguesia = freguesia,
+                    CodigoPostal = cp,
+                    Tipo = tipo,
+                    Caracteristicas = caracterisitcas,
+                    CE = ce,
+                    DataAngariacao = dataAngariacao,
+                    Arrendatario_ID = proprietario.Pessoa_ID,
+                    Angariador = comboBox1.Text,
+                    Nota = notas,
+                    Coordenadas = await BingGeo(morada + " " + concelho),
+                    Area = area
+                };
+            }
 
             pendentes.InsertOnSubmit(imovel);
             db.SubmitChanges();
@@ -146,6 +196,7 @@ namespace getNumbers
                 Preco1 = Convert.ToDecimal(preco),
                 Data = DateTime.Now.Date,
                 Imovel_ID = imovel.Imovel_ID,
+                Comissao = comissao
             };
 
             precoDB.InsertOnSubmit(precoImovel);
@@ -157,6 +208,68 @@ namespace getNumbers
             db.Dispose();
 
             MessageBox.Show("Inserido!");
+        }
+
+        private async Task<string> BingGeo(string rua)
+        {
+            /*try
+            {
+                var BingGeoCoder = new BingMapsGeocoder("Al1qXg0aEDZ-c6XmCkhND5UWiO3OVMQanAXqGQemST8R3rMU2KZnYJoYVUZvGgL6");
+                var address = await BingGeoCoder.GeocodeAsync(rua);
+            }
+
+            catch(Exception ex)
+            {
+
+            }
+
+            try
+            {
+                var MapQuestCoder = new MapQuestGeocoder("fGPdAAuMcGCBHouFfXlPDpwkEisbdAoG");
+                var address = await MapQuestCoder.GeocodeAsync(rua);
+            }
+
+            catch (Exception ex)
+            {
+
+            }*/
+
+            try
+            {
+                var GoogleGeoCoder = new GoogleGeocoder();
+                var address = (await GoogleGeoCoder.GeocodeAsync(rua)).ToList();
+
+                foreach(var gps in address)
+                {
+                    var res = MessageBox.Show(gps.FormattedAddress, gps.Coordinates.ToString(), MessageBoxButtons.YesNo);
+                    if (res == DialogResult.Yes)
+                        return gps.Coordinates.ToString();
+                }
+
+                return null;
+            }
+
+            catch (Exception ex)
+            {
+                return null;
+            }/*
+
+            try
+            {
+                var BingGeoCoder = new BingMapsGeocoder("Al1qXg0aEDZ-c6XmCkhND5UWiO3OVMQanAXqGQemST8R3rMU2KZnYJoYVUZvGgL6");
+                var address = await BingGeoCoder.GeocodeAsync(rua);
+            }
+
+            catch (Exception ex)
+            {
+
+            }*/
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            BingGeo("Rua 1º de Maio nº 3 Figueira da Foz");
         }
     }
 }

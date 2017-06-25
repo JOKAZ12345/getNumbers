@@ -3941,6 +3941,8 @@ namespace getNumbers
 		
 		private System.Nullable<int> _Imovel_ID;
 		
+		private System.Nullable<int> _Comissao;
+		
 		private EntitySet<Imovel> _Imovels;
 		
 		private EntitySet<Pendente> _Pendentes;
@@ -3957,6 +3959,8 @@ namespace getNumbers
     partial void OnDataChanged();
     partial void OnImovel_IDChanging(System.Nullable<int> value);
     partial void OnImovel_IDChanged();
+    partial void OnComissaoChanging(System.Nullable<int> value);
+    partial void OnComissaoChanged();
     #endregion
 		
 		public Preco()
@@ -4042,6 +4046,26 @@ namespace getNumbers
 					this._Imovel_ID = value;
 					this.SendPropertyChanged("Imovel_ID");
 					this.OnImovel_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comissao", DbType="Int")]
+		public System.Nullable<int> Comissao
+		{
+			get
+			{
+				return this._Comissao;
+			}
+			set
+			{
+				if ((this._Comissao != value))
+				{
+					this.OnComissaoChanging(value);
+					this.SendPropertyChanging();
+					this._Comissao = value;
+					this.SendPropertyChanged("Comissao");
+					this.OnComissaoChanged();
 				}
 			}
 		}
@@ -4143,6 +4167,8 @@ namespace getNumbers
 		
 		private string _Coordenadas;
 		
+		private System.Nullable<double> _Area;
+		
 		private string _Nota;
 		
 		private string _Angariador;
@@ -4185,6 +4211,8 @@ namespace getNumbers
     partial void OnCEChanged();
     partial void OnCoordenadasChanging(string value);
     partial void OnCoordenadasChanged();
+    partial void OnAreaChanging(System.Nullable<double> value);
+    partial void OnAreaChanged();
     partial void OnNotaChanging(string value);
     partial void OnNotaChanged();
     partial void OnAngariadorChanging(string value);
@@ -4407,6 +4435,26 @@ namespace getNumbers
 					this._Coordenadas = value;
 					this.SendPropertyChanged("Coordenadas");
 					this.OnCoordenadasChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Float")]
+		public System.Nullable<double> Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this.OnAreaChanging(value);
+					this.SendPropertyChanging();
+					this._Area = value;
+					this.SendPropertyChanged("Area");
+					this.OnAreaChanged();
 				}
 			}
 		}

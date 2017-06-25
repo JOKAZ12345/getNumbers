@@ -158,8 +158,52 @@ namespace getNumbers
 
         public void addMarkers(List<Marker> markersList)
         {
-            var markers = new GMapOverlay("markers");
+            var db = new prabitarDataContext();
 
+            var precos = db.Precos;
+
+            gmap.MapProvider = GoogleMapProvider.Instance;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            gmap.SetPositionByKeywords("Figueira da Foz, Portugal");
+            gmap.ShowCenter = false;
+
+            GMapOverlay markers = new GMapOverlay("markers");
+
+            foreach(var item in db.Pendentes)
+            {
+                if(item.Coordenadas != null)
+                {
+                    var coordenadas = item.Coordenadas.Split(' ');
+                    coordenadas[0] = coordenadas[0].Substring(0, coordenadas[0].Length - 1);
+
+                    decimal? _preco = 0;
+
+                    foreach(var preco in precos)
+                    {
+                        if (preco.Preco_ID == item.Preco_ID)
+                        {
+                            _preco = preco.Preco1;
+                            break;
+                        }
+                    }
+
+                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(Convert.ToDouble(coordenadas[0]), Convert.ToDouble(coordenadas[1])), GMarkerGoogleType.yellow_small)
+                        {
+                            ToolTipText = "Localização: " + item.Localizacao + "\nAngariador: " + item.Angariador + "\nTipo: " + item.Tipo + "\nPreço: " + _preco.ToString(),
+                            ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                            Tag = item.Imovel_ID
+                        };
+                    markers.Markers.Add(marker);
+                    gmap.Overlays.Add(markers);
+                }
+            }
+            
+
+            /*gmap.Overlays.Clear();
+
+            GMapOverlay markers = new GMapOverlay("markers");
+
+            //gmap.Overlays.Add(markersOverlay);
             var db = new prabitarDataContext();
 
             /*foreach(var item in db.Potencials.Where(x => x.Nome.Contains("MAX")))
@@ -168,7 +212,7 @@ namespace getNumbers
                 addPonto(Convert.ToDouble(coordenadas[1]), Convert.ToDouble(coordenadas[0].Substring(0, coordenadas[0].Length - 1)), item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
             }*/
 
-            foreach (var item in db.Potencials.Where(x => x.URL.Contains("idealista")))
+            /*foreach (var item in db.Potencials.Where(x => x.URL.Contains("idealista")))
             {
                 var x = new PointLatLng();
                 var res = gmap.GetPositionByKeywords(item.TituloAnuncio, out x);
@@ -178,15 +222,40 @@ namespace getNumbers
                     addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Telefone + "\n" + item.Preco, markers, item.URL, null);
                     //addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
                 }
-            }
+            }*/
 
-            foreach (var mark in markersList)
+            /*foreach(var item in db.Pendentes)
             {
-                addPonto(mark.Latitude, mark.Longitude, mark.tooltiptext, markers, mark.url, mark.data);
-            }
+                if(!string.IsNullOrWhiteSpace(item.Coordenadas))
+                {
+                    var coordenadas = item.Coordenadas.Split(' ');
+                    {   //TODO: ADD DATA DO OUTRO ANUNCIO
+                        //addPonto(Convert.ToDouble(coordenadas[1]), Convert.ToDouble(coordenadas[0].Substring(0, coordenadas[0].Length - 1)), item.Localizacao + "\n" + item.Preco, markers, item.Angariador, null);
+                        //addPonto(x.Lat, x.Lng, item.TituloAnuncio + "\n" + item.Preco, markers, item.URL, null);
 
+                        var color = GMarkerGoogleType.green_small;
+
+                        var gmarker = new GMarkerGoogle(new PointLatLng(Convert.ToDouble(coordenadas[1]), Convert.ToDouble(coordenadas[0].Substring(0, coordenadas[0].Length - 1))), color)
+                        {
+                            ToolTipText = item.Localizacao,
+                            ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                            Tag = item.Coordenadas
+                        };
+
+                        markers.Markers.Add(gmarker);
+                    }
+                }
+            }
 
             gmap.Overlays.Add(markers);
+            /*foreach (var mark in markersList)
+            {
+                addPonto(mark.Latitude, mark.Longitude, mark.tooltiptext, markers, mark.url, mark.data);
+            }*/
+
+
+            //gmap.Overlays.Add(markersOverlay);
+            //gmap.Overlays.Add(markers);
             //addMarkersPrabitar();
         }
 
@@ -204,6 +273,11 @@ namespace getNumbers
         }
 
         private void gMapControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

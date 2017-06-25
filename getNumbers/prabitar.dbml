@@ -179,6 +179,7 @@
       <Column Name="Preco" Member="Preco1" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Data" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Imovel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comissao" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Preco_Imovel" Member="Imovels" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Imovel" />
       <Association Name="Preco_Pendente" Member="Pendentes" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Pendente" />
     </Type>
@@ -195,6 +196,7 @@
       <Column Name="DataAngariacao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="CE" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="Coordenadas" Type="System.String" DbType="VarChar(450)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Nota" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
       <Column Name="Angariador" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Vendedor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
