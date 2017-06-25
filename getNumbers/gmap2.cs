@@ -85,6 +85,17 @@ namespace getNumbers
             }
         }
 
+        public string getCoordenadas(string morada)
+        {
+            var x = new PointLatLng();
+            var res = gmap.GetPositionByKeywords(morada, out x);
+
+            if (res == GeoCoderStatusCode.G_GEO_SUCCESS)
+                return x.Lat + ", " + x.Lng;
+
+            return null;
+        }
+
         private void gmap_OnMarkerClick(object sender, EventArgs eventArgs)
         {
             MessageBox.Show($@"Marker {((GMapMarker)sender).Tag} was clicked.");

@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net.Http;
 using System.Net;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
-using OpenQA.Selenium.Remote;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 
 namespace getNumbers
 {

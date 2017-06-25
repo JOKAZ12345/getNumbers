@@ -81,13 +81,12 @@
       <Association Name="Imovel_Comprador" Member="Compradors" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Comprador" />
       <Association Name="Imovel_Comprar" Member="Comprars" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Comprar" />
       <Association Name="Imovel_Permuta" Member="Permutas" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Permuta" />
-      <Association Name="Imovel_Preco" Member="Precos" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Preco" />
       <Association Name="Imovel_Vendedor" Member="Vendedors" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Vendedor" />
       <Association Name="Imovel_Vender" Member="Venders" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Vender" />
       <Association Name="Arrendatario_Imovel" Member="Arrendatario" ThisKey="Arrendatario_ID" OtherKey="Arrendatario_ID" Type="Arrendatario" IsForeignKey="true" />
       <Association Name="Comprador_Imovel" Member="Comprador" ThisKey="Comprador_ID" OtherKey="Comprador_ID" Type="Comprador" IsForeignKey="true" />
-      <Association Name="Preco_Imovel" Member="Preco" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Preco" IsForeignKey="true" />
       <Association Name="Vendedor_Imovel" Member="Vendedor" ThisKey="Vendedor_ID" OtherKey="Vendedor_ID" Type="Vendedor" IsForeignKey="true" />
+      <Association Name="Preco_Imovel" Member="Preco" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Preco" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Permuta" Member="Permutas">
@@ -95,16 +94,6 @@
       <Column Name="Permutar_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Imovel_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Imovel_Permuta" Member="Imovel" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Imovel" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Preco" Member="Precos">
-    <Type Name="Preco">
-      <Column Name="Preco_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Preco" Member="Preco1" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Data" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Imovel_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Preco_Imovel" Member="Imovels" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Imovel" />
-      <Association Name="Imovel_Preco" Member="Imovel" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Imovel" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Vendas" Member="Vendas">
@@ -145,22 +134,6 @@
       <Column Name="url_idealista" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Pessoa" Member="Pessoas">
-    <Type Name="Pessoa">
-      <Column Name="Nome" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="BI" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Pessoa_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Telefone" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Profissao" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="DataNascimento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Morada" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="NIF" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Pessoa_Arrendatario" Member="Arrendatarios" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Arrendatario" />
-      <Association Name="Pessoa_Comprador" Member="Compradors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Comprador" />
-      <Association Name="Pessoa_Vendedor" Member="Vendedors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Vendedor" />
-    </Type>
-  </Table>
   <Table Name="dbo.Ignorar" Member="Ignorars">
     <Type Name="Ignorar">
       <Column Name="Ignorar_PK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -185,7 +158,32 @@
       <Column Name="DataAnuncio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Pendentes" Member="Pendentes">
+  <Table Name="dbo.Pessoa" Member="Pessoas">
+    <Type Name="Pessoa">
+      <Column Name="Nome" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="BI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pessoa_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Telefone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Profissao" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="DataNascimento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NIF" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Pessoa_Arrendatario" Member="Arrendatarios" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Arrendatario" />
+      <Association Name="Pessoa_Comprador" Member="Compradors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Comprador" />
+      <Association Name="Pessoa_Vendedor" Member="Vendedors" ThisKey="Pessoa_ID" OtherKey="Pessoa_ID" Type="Vendedor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Preco" Member="Precos">
+    <Type Name="Preco">
+      <Column Name="Preco_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Preco" Member="Preco1" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Data" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Imovel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Preco_Imovel" Member="Imovels" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Imovel" />
+      <Association Name="Preco_Pendente" Member="Pendentes" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Pendente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pendente" Member="Pendentes">
     <Type Name="Pendente">
       <Column Name="Imovel_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Localizacao" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
@@ -194,13 +192,18 @@
       <Column Name="CodigoPostal" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Tipo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Caracteristicas" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="DataConstrucao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DataAngariacao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="CE" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Coordenadas" Type="System.String" DbType="VarChar(450)" CanBeNull="true" />
+      <Column Name="Nota" Type="System.String" DbType="VarChar(350)" CanBeNull="true" />
+      <Column Name="Angariador" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Vendedor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Comprador_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Arrendatario_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Preco_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Nota" Type="System.String" DbType="VarChar(450)" CanBeNull="true" />
+      <Association Name="Pendente_Pendente" Member="Pendente2" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Pendente" Cardinality="One" />
+      <Association Name="Pendente_Pendente" Member="Pendente1" ThisKey="Imovel_ID" OtherKey="Imovel_ID" Type="Pendente" IsForeignKey="true" />
+      <Association Name="Preco_Pendente" Member="Preco" ThisKey="Preco_ID" OtherKey="Preco_ID" Type="Preco" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

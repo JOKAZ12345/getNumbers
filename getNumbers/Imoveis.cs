@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GMap.NET;
+using GMap.NET.MapProviders;
 
 namespace getNumbers
 {
@@ -22,31 +24,70 @@ namespace getNumbers
 
         }
 
+        private int? getIntegerFromString(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return null;
+
+            return Convert.ToInt32(str);
+        }
+
+        private string getValueFromString(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return "";
+
+            return str;
+        }
+
+        private DateTime getDateFromString(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return DateTime.Now.Date;
+
+            return DateTime.Parse(str, new System.Globalization.CultureInfo("pt-PT", true), System.Globalization.DateTimeStyles.AssumeLocal).Date;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            var db = new prabitarDataSet();
+            var db = new prabitarDataContext();
             var pendentes = db.Pendentes;
-            var pessoas = db.Pessoa;
+            var pessoas = db.Pessoas;
+            var precoDB = db.Precos;
 
-            var morada = textBox1.Text;
-            var concelho = textBox2.Text;
-            var freguesia = textBox3.Text;
-            var cp = textBox4.Text;
+            var morada = getValueFromString(textBox1.Text);
+            var concelho = getValueFromString(textBox2.Text);
+            var freguesia = getValueFromString(textBox3.Text);
+            var cp = getIntegerFromString(textBox4.Text);
 
-            var tipo = textBox5.Text;
-            var caracterisitcas = textBox6.Text;
-            var ce = textBox7.Text;
-            var dataConstrucao = textBox8.Text;
+            var tipo = getValueFromString(textBox5.Text);
+            var caracterisitcas = getValueFromString(textBox6.Text);
+            var ce = getValueFromString(textBox7.Text);
+            var dataAngariacao = getDateFromString(textBox8.Text);
             var preco = textBox17.Text;
 
             var notas = textBox16.Text;
 
-            var proprietario = pessoas.FirstOrDefault(x => x.BI == Convert.ToInt32(textBox12.Text));
+            Pessoa proprietario = null;/* = pessoas.First(x => x.BI == getIntegerFromString(textBox12.Text));*/
+
+            foreach(var p in pessoas)
+            {
+                var bi = getIntegerFromString(textBox12.Text);
+
+                if (bi == null)
+                    break;
+
+                if (p.BI == bi)
+                {
+                    proprietario = p;
+                    break;
+                }    
+            }
 
             if (proprietario != null)
             {
                 textBox9.Text = proprietario.Nome;
-                textBox13.Text = proprietario.Morada;
+                //textBox13.Text = proprietario.Morada;
                 //textBox10.Text = proprietario.ci
                 textBox12.Text = proprietario.BI.ToString();
                 textBox11.Text = proprietario.NIF.ToString();
@@ -56,22 +97,66 @@ namespace getNumbers
 
             else
             {
-                var nome = textBox9.Text;
-                var moradaProprietario = textBox13.Text;
-                var estadoCivil = textBox10.Text;
-                var BI = textBox12.Text;
-                var NIF = textBox11.Text;
-                var telefone = textBox14.Text;
-                var email = textBox15.Text;
+                var nome = getValueFromString(textBox9.Text);
+                var moradaProprietario = getValueFromString(textBox13.Text);
+                var estadoCivil = getValueFromString(textBox10.Text);
+                var BI = getIntegerFromString(textBox12.Text);
+                var NIF = getIntegerFromString(textBox11.Text);
+                var telefone = getValueFromString(textBox14.Text);
+                var email = getValueFromString(textBox15.Text);
+
+                proprietario = new Pessoa()
+                {
+                    Nome = nome,
+                    BI = BI,
+                    NIF = NIF,
+                    Telefone = telefone,
+                    Email = email
+                };
+
+                pessoas.InsertOnSubmit(proprietario);
+
+                db.SubmitChanges();
             }
+
+            var gmap = new gmap2();
+            var coordenadas = gmap.getCoordenadas(morada + " " + concelho + " " + freguesia + " " + cp);
 
             var imovel = new Pendente()
             {
                 Localizacao = morada,
                 Concelho = concelho,
                 Freguesia = freguesia,
-
+                CodigoPostal = cp,
+                Tipo = tipo,
+                Caracteristicas = caracterisitcas,
+                CE = ce,
+                DataAngariacao = dataAngariacao,
+                Vendedor_ID = proprietario.Pessoa_ID,
+                Angariador = comboBox1.Text,
+                Nota = notas,
+                Coordenadas = coordenadas
             };
+
+            pendentes.InsertOnSubmit(imovel);
+            db.SubmitChanges();
+
+            var precoImovel = new Preco()
+            {
+                Preco1 = Convert.ToDecimal(preco),
+                Data = DateTime.Now.Date,
+                Imovel_ID = imovel.Imovel_ID,
+            };
+
+            precoDB.InsertOnSubmit(precoImovel);
+            db.SubmitChanges();
+
+            imovel.Preco_ID = precoImovel.Preco_ID;
+
+            db.SubmitChanges();
+            db.Dispose();
+
+            MessageBox.Show("Inserido!");
         }
     }
 }
