@@ -254,48 +254,52 @@ namespace getNumbers
                                 var preco = driver.FindElementByClassName("xxxx-large");
                                 var user = driver.FindElementByClassName("offer-user__details");
                                 var data = driver.FindElementByXPath("//*[@id=\"offerdescription\"]/div[2]/div[1]/em");
+                                var localizacao = driver.FindElementByClassName("show-map-link");
 
                                 string numInit = num.Text;
 
-                                if (num != null)
+                                if (localizacao != null && localizacao.Text.Contains("Figueira da Foz"))
                                 {
-                                    num.Click();
-
-                                    for (int i = 0; i < 100; i++)
+                                    if (num != null)
                                     {
-                                        if (num.Text != numInit)
+                                        num.Click();
+
+                                        for (int i = 0; i < 100; i++)
                                         {
-                                            numInit = num.Text.Replace(" ", "");
-                                            break;
-                                        }
-                                    }
-
-                                    string _data = "";
-
-                                    if (data != null)
-                                        _data = getDataFromString(data.Text.Split(',')[1]);
-
-                                    if (preco != null && user != null)
-                                    {
-                                        string _preco = preco.Text;
-                                        string userNome = user.Text.Split('\r')[0];
-
-                                        var tele = num.Text.Replace(" ", "");
-
-                                        if (!potencial.Any(x => x.TituloAnuncio == titulo && (x.Telefone == numInit || x.Nome == userNome)))
-                                        {
-                                            var pot = new Potencial
+                                            if (num.Text != numInit)
                                             {
-                                                Preco = Convert.ToDecimal(_preco.Replace(".", "").Replace(",", "").TrimEnd('€')),
-                                                TituloAnuncio = titulo,
-                                                URL = linq,
-                                                Nome = userNome,
-                                                Telefone = numInit,
-                                                DataAnuncio = _data
-                                            };
+                                                numInit = num.Text.Replace(" ", "");
+                                                break;
+                                            }
+                                        }
 
-                                            //lista.Add(pot);
-                                            potencial.InsertOnSubmit(pot);
+                                        string _data = "";
+
+                                        if (data != null)
+                                            _data = getDataFromString(data.Text.Split(',')[1]);
+
+                                        if (preco != null && user != null)
+                                        {
+                                            string _preco = preco.Text;
+                                            string userNome = user.Text.Split('\r')[0];
+
+                                            var tele = num.Text.Replace(" ", "");
+
+                                            if (!potencial.Any(x => x.TituloAnuncio == titulo && (x.Telefone == numInit || x.Nome == userNome)))
+                                            {
+                                                var pot = new Potencial
+                                                {
+                                                    Preco = Convert.ToDecimal(_preco.Replace(".", "").Replace(",", "").TrimEnd('€')),
+                                                    TituloAnuncio = titulo,
+                                                    URL = linq,
+                                                    Nome = userNome,
+                                                    Telefone = numInit,
+                                                    DataAnuncio = _data
+                                                };
+
+                                                //lista.Add(pot);
+                                                potencial.InsertOnSubmit(pot);
+                                            }
                                         }
                                     }
                                 }

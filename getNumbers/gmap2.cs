@@ -14,7 +14,7 @@ using GMap.NET.WindowsForms.Markers;
 
 namespace getNumbers
 {
-   
+
     public partial class gmap2 : Form
     {
         public gmap2()
@@ -33,7 +33,7 @@ namespace getNumbers
             gmap.ShowCenter = false;
             gmap.DragButton = MouseButtons.Left;
 
-            addMarkers(new List<Marker>());
+            //addMarkers(new List<Marker>());
         }
 
         private void addPonto(double lat, double lon, string desc, GMapOverlay markers, string url, string data)
@@ -99,7 +99,7 @@ namespace getNumbers
         private void gmap_OnMarkerClick(object sender, EventArgs eventArgs)
         {
             MessageBox.Show($@"Marker {((GMapMarker)sender).Tag} was clicked.");
-            System.Diagnostics.Process.Start((string) ((GMapMarker) sender).Tag);
+            System.Diagnostics.Process.Start((string)((GMapMarker)sender).Tag);
         }
 
         public void addMarkersIdealista()
@@ -169,35 +169,32 @@ namespace getNumbers
 
             GMapOverlay markers = new GMapOverlay("markers");
 
-            foreach(var item in db.Pendentes)
+            foreach (var item in db.Pendentes)
             {
-                if(item.Coordenadas != null)
+                if (item.Coordenadas != null)
                 {
                     var coordenadas = item.Coordenadas.Split(' ');
                     coordenadas[0] = coordenadas[0].Substring(0, coordenadas[0].Length - 1);
 
                     decimal? _preco = 0;
 
-                    foreach(var preco in precos)
+                    foreach (var preco in precos.Where(preco => preco.Preco_ID == item.Preco_ID))
                     {
-                        if (preco.Preco_ID == item.Preco_ID)
-                        {
-                            _preco = preco.Preco1;
-                            break;
-                        }
+                        _preco = preco.Preco1;
+                        break;
                     }
 
                     GMapMarker marker = new GMarkerGoogle(new PointLatLng(Convert.ToDouble(coordenadas[0]), Convert.ToDouble(coordenadas[1])), GMarkerGoogleType.yellow_small)
-                        {
-                            ToolTipText = "Localização: " + item.Localizacao + "\nAngariador: " + item.Angariador + "\nTipo: " + item.Tipo + "\nPreço: " + _preco.ToString(),
-                            ToolTipMode = MarkerTooltipMode.OnMouseOver,
-                            Tag = item.Imovel_ID
-                        };
+                    {
+                        ToolTipText = "Localização: " + item.Localizacao + "\nAngariador: " + item.Angariador + "\nTipo: " + item.Tipo + "\nPreço: " + _preco.ToString(),
+                        ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                        Tag = item.Imovel_ID
+                    };
                     markers.Markers.Add(marker);
                     gmap.Overlays.Add(markers);
                 }
             }
-            
+
 
             /*gmap.Overlays.Clear();
 
@@ -279,7 +276,28 @@ namespace getNumbers
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            var angariadores = new List<string>();
 
+            if (checkBox1.Checked)
+            {
+                addMarkers(new List<Marker>());
+                return;
+            }   
+
+            if (checkBox2.Checked)
+                angariadores.Add("Acácio");
+
+            if (checkBox3.Checked)
+                angariadores.Add("Jorge");
+
+            if (checkBox4.Checked)
+                angariadores.Add("Luís");
+
+            if (checkBox5.Checked)
+                angariadores.Add("Irís");
+
+            if (checkBox6.Checked)
+                angariadores.Add("Carmo");
         }
     }
 

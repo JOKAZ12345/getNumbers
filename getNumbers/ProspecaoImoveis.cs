@@ -516,6 +516,7 @@ namespace getNumbers
         private void button10_Click(object sender, EventArgs e)
         {
             var mapa = new gmap2();
+            mapa.addMarkers(new List<Marker>());
             mapa.ShowDialog(this);
             //mapa.addMarkers(new List<Marker>());
             //mapa.Refresh();
