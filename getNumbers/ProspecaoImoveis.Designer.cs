@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label label1;
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -49,10 +51,27 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.prabitarDataSet = new getNumbers.prabitarDataSet();
+            this.prabitarDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.prabitarDataSet1 = new getNumbers.prabitarDataSet1();
+            this.potencialBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.potencialTableAdapter = new getNumbers.prabitarDataSet1TableAdapters.PotencialTableAdapter();
+            this.telefoneTextBox = new System.Windows.Forms.TextBox();
+            this.button14 = new System.Windows.Forms.Button();
+            this.Duplicates = new System.Windows.Forms.CheckBox();
+            this.contadorLabel = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.potencialBindingSource)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -291,16 +310,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ROUBAR REMAX";
             // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(101, 54);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 12;
-            this.button12.Text = "&Mapa";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
             // button13
             // 
             this.button13.Location = new System.Drawing.Point(61, 25);
@@ -311,11 +320,114 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(101, 54);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 12;
+            this.button12.Text = "&Mapa";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // prabitarDataSet
+            // 
+            this.prabitarDataSet.DataSetName = "prabitarDataSet";
+            this.prabitarDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // prabitarDataSetBindingSource
+            // 
+            this.prabitarDataSetBindingSource.DataSource = this.prabitarDataSet;
+            this.prabitarDataSetBindingSource.Position = 0;
+            // 
+            // prabitarDataSet1
+            // 
+            this.prabitarDataSet1.DataSetName = "prabitarDataSet1";
+            this.prabitarDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // potencialBindingSource
+            // 
+            this.potencialBindingSource.DataMember = "Potencial";
+            this.potencialBindingSource.DataSource = this.prabitarDataSet1;
+            // 
+            // potencialTableAdapter
+            // 
+            this.potencialTableAdapter.ClearBeforeFill = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(18, 481);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(55, 13);
+            label1.TabIndex = 14;
+            label1.Text = "Telefone: ";
+            // 
+            // telefoneTextBox
+            // 
+            this.telefoneTextBox.Location = new System.Drawing.Point(71, 478);
+            this.telefoneTextBox.Name = "telefoneTextBox";
+            this.telefoneTextBox.Size = new System.Drawing.Size(179, 20);
+            this.telefoneTextBox.TabIndex = 15;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(331, 538);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 16;
+            this.button14.Text = "&Search grid";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // Duplicates
+            // 
+            this.Duplicates.AutoSize = true;
+            this.Duplicates.Location = new System.Drawing.Point(21, 515);
+            this.Duplicates.Name = "Duplicates";
+            this.Duplicates.Size = new System.Drawing.Size(79, 17);
+            this.Duplicates.TabIndex = 17;
+            this.Duplicates.Text = "Duplicados";
+            this.Duplicates.UseVisualStyleBackColor = true;
+            // 
+            // contadorLabel
+            // 
+            this.contadorLabel.AutoSize = true;
+            this.contadorLabel.Location = new System.Drawing.Point(687, 465);
+            this.contadorLabel.Name = "contadorLabel";
+            this.contadorLabel.Size = new System.Drawing.Size(41, 13);
+            this.contadorLabel.TabIndex = 18;
+            this.contadorLabel.Text = "Count: ";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.panel1);
+            this.groupBox3.Location = new System.Drawing.Point(12, 310);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(800, 152);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Prospeção";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(15, 29);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(767, 102);
+            this.panel1.TabIndex = 0;
+            // 
             // ProspecaoImoveis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 573);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.contadorLabel);
+            this.Controls.Add(this.Duplicates);
+            this.Controls.Add(this.button14);
+            this.Controls.Add(this.telefoneTextBox);
+            this.Controls.Add(label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.groupBox2);
@@ -324,10 +436,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProspecaoImoveis";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.ProspecaoImoveis_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prabitarDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.potencialBindingSource)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -356,5 +475,16 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private prabitarDataSet prabitarDataSet;
+        private System.Windows.Forms.BindingSource prabitarDataSetBindingSource;
+        private prabitarDataSet1 prabitarDataSet1;
+        private System.Windows.Forms.BindingSource potencialBindingSource;
+        private prabitarDataSet1TableAdapters.PotencialTableAdapter potencialTableAdapter;
+        private System.Windows.Forms.TextBox telefoneTextBox;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.CheckBox Duplicates;
+        private System.Windows.Forms.Label contadorLabel;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.MapProviders;
@@ -538,6 +541,51 @@ namespace getNumbers
         {
             var remax = new Remax();
             remax.roubarRemaxSite();
+
+        }
+
+        private void ProspecaoImoveis_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'prabitarDataSet1.Potencial' table. You can move, or remove it, as needed.
+            //dataGridView1.BorderStyle = BorderStyle.None; dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249); dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise; dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke; dataGridView1.BackgroundColor = Color.White; dataGridView1.EnableHeadersVisualStyles = false; dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None; dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72); dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            this.potencialTableAdapter.Fill(this.prabitarDataSet1.Potencial);
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var db = new prabitarDataContext();
+
+                var potencial = db.Potencials;
+
+                foreach (var p in potencial)
+                {
+                    TextBox textBox = new TextBox();
+                    textBox.Text = p.Telefone;
+                    textBox.Location = new Point(10, panel1.Controls.Count * 25);
+
+                    TextBox textBox2 = new TextBox();
+                    textBox2.Text = p.TituloAnuncio;
+                    textBox2.Location = new Point(170, panel1.Controls.Count * 25);
+                    textBox2.Size = new Size(textBox2.Text.Length * 6, 20);
+
+                    panel1.Controls.Add(textBox);
+                    panel1.Controls.Add(textBox2);
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
