@@ -278,11 +278,11 @@ namespace getNumbers
                                         if (data != null)
                                             _data = getDataFromString(data.Text.Split(',')[1]);
 
-                                        if (preco != null && user != null)
+                                        if (preco != null && user != null && !string.IsNullOrWhiteSpace(user.Text))
                                         {
                                             string _preco = preco.Text;
                                             string userNome = user.Text.Split('\r')[0];
-
+                                            
                                             var tele = num.Text.Replace(" ", "");
 
                                             if (!potencial.Any(x => x.TituloAnuncio == titulo && (x.Telefone == numInit || x.Nome == userNome)))
